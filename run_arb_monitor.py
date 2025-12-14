@@ -30,7 +30,10 @@ POLY_BOOKS_BATCH_ENDPOINT = f"{POLY_CLOB_BASE_URL}/books"  # POST 批量
 GAMMA_BASE_URL = "https://gamma-api.polymarket.com"
 GAMMA_EVENT_SLUG_ENDPOINT = f"{GAMMA_BASE_URL}/events/slug"
 
+# 兼容：单 key（旧） + 多 key（新）
 OPINION_API_KEY = os.getenv("OPINION_API_KEY")
+OPINION_API_KEYS_RAW = os.getenv("OPINION_API_KEYS", "")
+
 TG_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TG_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 TG_THREAD_ID = os.getenv("TELEGRAM_MESSAGE_THREAD_ID")  # 可选：论坛群 topic id
