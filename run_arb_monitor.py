@@ -16,6 +16,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+#V1.5 优化版本
+#优化Opinion 为啥 22s：你每一轮都在“重建线程池 + 重建连接 + 双重重试”
+#Polymarket 为啥 8s：你在 /books 后面“补齐 missing 单个 /book”，missing 很多时会爆炸
+
 # ===================== 基础配置（你只改这里也可以） =====================
 MARKET_JSON_DEFAULT = os.path.join(os.path.dirname(__file__), "market_token_pairs.json")
 
@@ -33,6 +37,19 @@ GAMMA_EVENT_SLUG_ENDPOINT = f"{GAMMA_BASE_URL}/events/slug"
 # 兼容：单 key（旧） + 多 key（新）
 OPINION_API_KEY = os.getenv("OPINION_API_KEY")
 OPINION_API_KEYS_RAW = os.getenv("OPINION_API_KEYS", "")
+
+def get_opinion_keys() -> List[str]:
+    # 支持逗号/空格分隔
+    keys: List[str] = []
+    if OPINION_API_KEYS_RAW.strip():
+        keys = [k for k in re.split(r"[,\s]+", OPINION_API_KEYS_RAW.strip()) if k]
+
+    # 兼容旧的单 key
+    if not keys and OPINION_API_KEY and OPINION_API_KEY.strip():
+        keys = [OPINION_API_KEY.strip()]
+
+    return keys
+
 
 TG_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TG_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
@@ -99,22 +116,10 @@ _tls = threading.local()
 def _build_session() -> requests.Session:
     s = requests.Session()
 
-    retry = Retry(
-        total=3,
-        connect=3,
-        read=3,
-        status=3,
-        backoff_factor=0.4,
-        status_forcelist=(429, 500, 502, 503, 504),
-        allowed_methods=("GET", "POST"),
-        raise_on_status=False,
-        respect_retry_after_header=True,
-    )
-
     adapter = HTTPAdapter(
-        max_retries=retry,
-        pool_connections=64,
-        pool_maxsize=64,
+        max_retries=0,          # ✅ 关闭 urllib3 自动重试（避免双重重试）
+        pool_connections=256,
+        pool_maxsize=256,
     )
 
     s.mount("https://", adapter)
@@ -222,11 +227,18 @@ def tg_send(text: str):
 
     try:
         s = get_session("tg")
-        r = s.post(url, json=payload, timeout=HTTP_TIMEOUT)
-        if r.status_code != 200:
-            print("[WARN] Telegram send failed:", r.status_code, r.text[:200])
+        request_json(
+            "POST",
+            url,
+            session=s,
+            json_body=payload,
+            limiter=None,          # 你有 cooldown，通常不需要再给 TG 限速
+            timeout=(3, 10),       # TG 用短一点，别拖慢主循环
+            tries=3,
+        )
     except Exception as e:
         print("[WARN] Telegram exception:", e)
+
 
 # ===================== 订单簿解析（统一：best bid/ask + size） =====================
 def parse_best_bid_ask(book: Dict[str, Any]) -> Dict[str, Optional[float]]:
@@ -255,12 +267,12 @@ def parse_best_bid_ask(book: Dict[str, Any]) -> Dict[str, Optional[float]]:
     }
 
 # ===================== Opinion 拉订单簿 =====================
-def opinion_fetch_orderbook(token_id: str, limiter: RateLimiter) -> Dict[str, Any]:
-    if not OPINION_API_KEY:
-        raise RuntimeError("OPINION_API_KEY 未设置")
+def opinion_fetch_orderbook(token_id: str, api_key: str, limiter: RateLimiter) -> Dict[str, Any]:
+    if not api_key:
+        raise RuntimeError("Opinion api_key 为空（请检查 OPINION_API_KEYS / OPINION_API_KEY）")
 
     headers = {
-        "apikey": OPINION_API_KEY,
+        "apikey": api_key,
         "Accept": "application/json",
         "User-Agent": USER_AGENT,
     }
@@ -281,6 +293,7 @@ def opinion_fetch_orderbook(token_id: str, limiter: RateLimiter) -> Dict[str, An
         raise RuntimeError(f"Opinion orderbook errno={code}: {str(data)[:300]}")
 
     return data
+
 
 # ===================== Polymarket 拉订单簿（批量优先） =====================
 def polymarket_fetch_book_single(token_id: str, limiter: RateLimiter) -> Dict[str, Any]:
@@ -340,11 +353,9 @@ def polymarket_fetch_books_batch(
 
         missing = [tid for tid in chunk if tid not in out]
         if missing:
+            # ✅ /books 没返回的 token，大概率就是没有 orderbook（404 也被你视为正常空簿）:contentReference[oaicite:13]{index=13}
             for tid in missing:
-                try:
-                    out[tid] = polymarket_fetch_book_single(tid, limiter)
-                except Exception as e:
-                    print(f"[WARN] Polymarket token {tid} /book failed: {e}")
+                out[tid] = {"bids": [], "asks": [], "_missing_from_books": True}
 
     return out
 
@@ -410,7 +421,7 @@ def event_is_within_days(slug: str, max_days: int, limiter: RateLimiter) -> bool
 
 # ===================== URL 构造（电报里用） =====================
 
-def leg_is_within_days(leg: Dict[str, Any], max_days: int) -> bool:
+def leg_is_within_days(leg: Dict[str, Any], max_days: int, gamma_limiter: Optional[RateLimiter] = None) -> bool:
     """优先用 market_token_pairs.json 里每个 Polymarket 子市场的 endDate 来过滤。
     规则：endDate 距离现在 > max_days => 不参与监控/不提醒；endDate 已过期 => 不参与。
     如果 leg 没有 endDate（老 JSON），再 fallback 用 event slug 去 Gamma 查 endDate。
@@ -428,9 +439,10 @@ def leg_is_within_days(leg: Dict[str, Any], max_days: int) -> bool:
     if end_dt is None:
         slug = leg.get("pm_event_slug")
         if slug:
-            meta = gamma_get_event_meta(slug)
-            if meta:
-                end_dt = iso_to_dt(meta.get("endDate"))
+            meta = gamma_get_event_meta(slug, gamma_limiter)  # ✅补上 limiter
+            if meta and isinstance(meta.get("end_dt"), datetime):
+                end_dt = meta["end_dt"]  # ✅直接拿 datetime，不要再 iso_to_dt
+
 
     if end_dt is None:
         # 实在拿不到，就别过滤（避免误杀）
@@ -595,14 +607,16 @@ def main():
     ap.add_argument("--json", default=MARKET_JSON_DEFAULT, help="market_token_pairs.json 路径")
 
     # 这些你完全可以只改 default，不传命令行参数
-    ap.add_argument("--interval", type=float, default=3.0, help="轮询间隔秒")
+    ap.add_argument("--interval", type=float, default=1.5, help="轮询间隔秒")
     ap.add_argument("--delta-cents", type=float, default=1.8, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
-    ap.add_argument("--cooldown", type=int, default=120, help="同一条机会最短提醒间隔(秒)")
+    ap.add_argument("--cooldown", type=int, default=180, help="同一条机会最短提醒间隔(秒)")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出")
 
-    ap.add_argument("--workers", type=int, default=8, help="Opinion 并发线程数")
-    ap.add_argument("--op-qps", type=float, default=6.0, help="Opinion 限速 QPS（线程共享）")
-    ap.add_argument("--pm-qps", type=float, default=3.0, help="Polymarket 限速 QPS（/books 批量也算一次）")
+    ap.add_argument("--workers", type=int, default=120, help="Opinion 并发线程数")
+    ap.add_argument("--op-qps", type=float, default=10.0, help="Opinion 限速 QPS（线程共享）")
+    ap.add_argument("--pm-qps", type=float, default=7.0, help="Polymarket 限速 QPS（/books 批量也算一次）")
+    ap.add_argument("--gamma-qps", type=float, default=2.0, help="Gamma 限速 QPS（仅 endDate 缺失时 fallback 用）")
+
 
     ap.add_argument("--pm-batch", default=True, action=argparse.BooleanOptionalAction,
                     help="Polymarket 使用 /books 批量（强烈推荐默认开启）")
@@ -628,27 +642,74 @@ def main():
     delta = args.delta_cents / 100.0
     threshold = 1.0 - delta
 
-    op_limiter = RateLimiter(args.op_qps)
+    op_keys = get_opinion_keys()
+    if not op_keys:
+        raise SystemExit("未配置 Opinion API Key：请设置 OPINION_API_KEYS 或 OPINION_API_KEY")
+
+    # 每个 key 一个 limiter：args.op_qps 视为“每个 key 的 QPS”
+    op_limiters = [RateLimiter(args.op_qps) for _ in op_keys]
+
+    def pick_key_idx(token_id: str, n: int) -> int:
+        if n <= 1:
+            return 0
+        try:
+            # token_id 是大数字字符串，取末 9 位做分配（稳定、够均匀）
+            return int(token_id[-9:]) % n
+        except Exception:
+            return sum(ord(c) for c in token_id) % n
+
+
     pm_limiter = RateLimiter(args.pm_qps)
+    gamma_limiter = RateLimiter(args.gamma_qps)  # ✅新增
+
 
     last_sent: Dict[str, float] = {}
 
     print(f"=== arb_monitor 启动 ===")
+    print(f"Opinion API keys={len(op_keys)} (op_qps per key={args.op_qps})")
     print(f"legs: {len(legs)}, interval={args.interval}s, threshold=sum<{threshold:.4f} (delta={delta:.4f})")
     print(f"min_deploy=${args.min_deploy_usd:.2f}, max_days_to_expiry={args.max_days_to_expiry}d")
     print(f"Opinion workers={args.workers}, op_qps={args.op_qps}, pm_batch={args.pm_batch}, pm_qps={args.pm_qps}\n")
 
+    # main() 里 while True 外面，先建一次
+    op_executor = ThreadPoolExecutor(max_workers=args.workers)
+    tg_executor = ThreadPoolExecutor(max_workers=4)
+
+    # ===== Warmup：预创建线程 + 在线程内初始化 opinion Session（减少第一轮冷启动抖动）=====
+    def _warm_op_thread():
+        get_session("opinion")  # 让这个线程创建自己的 requests.Session + pool
+        return 1
+
+    warm_futs = [op_executor.submit(_warm_op_thread) for _ in range(args.workers)]
+    for f in as_completed(warm_futs):
+        f.result()
+
+    # 主线程也顺手把其他 session 建一下（不耗时）
+    get_session("poly")
+    get_session("gamma")
+    get_session("tg")
+    # ===== Warmup end =====
+
     try:
         while True:
-            t0 = time.time()
+            t0 = time.perf_counter()
 
             # ====== 2) 结束时间过滤（优先用 JSON 里的 pm_endDate；>max_days 不监控）======
-            active_legs = [leg for leg in legs if leg_is_within_days(leg, args.max_days_to_expiry)]
+            t_filter0 = time.perf_counter()
+            active_legs = [leg for leg in legs if leg_is_within_days(leg, args.max_days_to_expiry, gamma_limiter)]
+            t_filter = time.perf_counter() - t_filter0
 
             if not active_legs:
                 # 全被过滤了，就等下一轮
                 dt = time.time() - t0
                 sleep_for = max(0.0, args.interval - dt)
+
+                print(
+                f"[ROUND] dt={dt:.3f}s | filter={t_filter:.3f}s | "
+                f"op=0.000s | pm=0.000s | arb+tg=0.000s | "
+                f"active_legs=0 op_tokens=0 pm_tokens=0 alerts=0 | sleep={sleep_for:.3f}s"
+                )
+
                 if args.once:
                     print("=== once 模式结束 ===")
                     return
@@ -659,18 +720,27 @@ def main():
             poly_tokens = sorted({leg["pm_yes"] for leg in active_legs} | {leg["pm_no"] for leg in active_legs})
 
             # 1) Opinion（并发 + 限速 + 重试）
+            t_op0 = time.perf_counter()
             opinion_books: Dict[str, Dict[str, Optional[float]]] = {}
-            with ThreadPoolExecutor(max_workers=args.workers) as ex:
-                futs = {ex.submit(opinion_fetch_orderbook, tid, op_limiter): tid for tid in opinion_tokens}
-                for fut in as_completed(futs):
-                    tid = futs[fut]
-                    try:
-                        data = fut.result()
-                        opinion_books[tid] = parse_best_bid_ask(data)
-                    except Exception as e:
-                        print(f"[WARN] Opinion token {tid} orderbook failed: {e}")
+
+            futs = {}
+            for idx, tid in enumerate(opinion_tokens):
+                i = idx % len(op_keys)   # ✅ 强制均匀分配
+                futs[op_executor.submit(opinion_fetch_orderbook, tid, op_keys[i], op_limiters[i])] = tid
+
+
+            for fut in as_completed(futs):
+                tid = futs[fut]
+                try:
+                    data = fut.result()
+                    opinion_books[tid] = parse_best_bid_ask(data)
+                except Exception as e:
+                    print(f"[WARN] Opinion token {tid} orderbook failed: {e}")
+
+            t_op = time.perf_counter() - t_op0
 
             # 2) Polymarket（批量优先；缺失再补齐）
+            t_pm0 = time.perf_counter()
             poly_books: Dict[str, Dict[str, Optional[float]]] = {}
             if args.pm_batch:
                 raw = polymarket_fetch_books_batch(poly_tokens, pm_limiter, chunk_size=200)
@@ -686,8 +756,12 @@ def main():
                         poly_books[tid] = parse_best_bid_ask(obj)
                     except Exception as e:
                         print(f"[WARN] Polymarket token {tid} /book failed: {e}")
+            t_pm = time.perf_counter() - t_pm0
 
             # 3) 套利
+            t_arb0 = time.perf_counter()
+            sent_cnt = 0
+
             for leg in active_legs:
 
                 pm_yes = poly_books.get(leg["pm_yes"])
@@ -721,7 +795,8 @@ def main():
                                         leg, direction, sum_cost, margin, max_shares, deploy_capital,
                                         pm_price, pm_size, op_price, op_size
                                     )
-                                    tg_send(msg)
+                                    tg_executor.submit(tg_send, msg)
+                                    sent_cnt += 1
                                     last_sent[key] = now
 
                 # B：PM NO + OP YES
@@ -750,11 +825,21 @@ def main():
                                         leg, direction, sum_cost, margin, max_shares, deploy_capital,
                                         pm_price, pm_size, op_price, op_size
                                     )
-                                    tg_send(msg)
+                                    tg_executor.submit(tg_send, msg)
+                                    sent_cnt += 1
                                     last_sent[key] = now
+            t_arb = time.perf_counter() - t_arb0    
 
-            dt = time.time() - t0
+            dt = time.perf_counter() - t0
             sleep_for = max(0.0, args.interval - dt)
+
+            print(
+                f"[ROUND] dt={dt:.3f}s | filter={t_filter:.3f}s | "
+                f"op={t_op:.3f}s | pm={t_pm:.3f}s | arb+tg={t_arb:.3f}s | "
+                f"active_legs={len(active_legs)} op_tokens={len(opinion_tokens)} pm_tokens={len(poly_tokens)} "
+                f"alerts={sent_cnt} | sleep={sleep_for:.3f}s"
+            )
+
             if args.once:
                 print("=== once 模式结束 ===")
                 return
@@ -762,6 +847,10 @@ def main():
 
     except KeyboardInterrupt:
         print("\n🛑 Ctrl+C 停止。")
+
+    finally:
+        op_executor.shutdown(wait=True)
+        tg_executor.shutdown(wait=True)
 
 if __name__ == "__main__":
     main()

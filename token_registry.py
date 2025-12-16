@@ -266,12 +266,48 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
         "polymarket_url": "https://polymarket.com/event/highest-grossing-movie-in-2025?tid=1765644316875",    
     },
 
+    {
+        "name": "Boxing: Jake Paul vs. Anthony Joshua",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=165&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/boxing-jake-paul-vs-anthony-joshua-third-option-included?tid=1765818628889", 
+    },
+
+
+    {
+        "name": "OpenAI IPO by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=171&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/openai-ipo-by?tid=1765907490700", 
+    },
+
+    {
+        "name": "Will Theo launch a token by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=172&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/will-theo-launch-a-token-by?tid=1765907536750", 
+    },
+
+    {
+        "name": "Pump.fun airdrop by ....?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=174&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/pumpfun-airdop-by?tid=1765907596260", 
+    },
+
+    {
+        "name": "Bitcoin above ... on December 17?(By 12:00 ET)",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=170&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/bitcoin-above-on-december-17?tid=1765907422792", 
+    },
+
     # 例子：BTC 单一二元市场
     {
-        "name": "Bitcoin Up or Down on December 14?(By 12:00 ET)",
+        "name": "Bitcoin Up or Down on December 17?(By 12:00 ET)",
         "type": "binary",
-        "opinion_url": "https://app.opinion.trade/detail?topicId=2508",
-        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-14?tid=1765646845522",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=2582",
+        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-17",
     },
 
     {

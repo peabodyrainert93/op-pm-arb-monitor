@@ -14,7 +14,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 load_dotenv()
 
-SCHEMA_VERSION = 5  # v5：修正 categorical 下每个 polymarket 子市场 endDate（按 market 级别写入）
+SCHEMA_VERSION = 6  # v6：修正 categorical 下每个 polymarket 子市场 endDate（按 market 级别写入）
 
 # requests 超时：(connect_timeout, read_timeout)
 # 旧版 read_timeout=10 在并发时更容易触发 Read timed out，这里给更宽松的默认值。
