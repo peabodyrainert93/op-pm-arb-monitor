@@ -608,7 +608,7 @@ def main():
 
     # 这些你完全可以只改 default，不传命令行参数
     ap.add_argument("--interval", type=float, default=1.5, help="轮询间隔秒")
-    ap.add_argument("--delta-cents", type=float, default=1.8, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
+    ap.add_argument("--delta-cents", type=float, default=1.7, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
     ap.add_argument("--cooldown", type=int, default=180, help="同一条机会最短提醒间隔(秒)")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出")
 
