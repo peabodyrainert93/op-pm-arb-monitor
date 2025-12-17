@@ -296,18 +296,18 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
     },
 
     {
-        "name": "Bitcoin above ... on December 17?(By 12:00 ET)",
+        "name": "Bitcoin above ... on December 18?(By 12:00 ET)",
         "type": "categorical",  # 多项
-        "opinion_url": "https://app.opinion.trade/detail?topicId=170&type=multi", 
-        "polymarket_url": "https://polymarket.com/event/bitcoin-above-on-december-17?tid=1765907422792", 
+        "opinion_url": "https://app.opinion.trade/detail?topicId=176&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/bitcoin-above-on-december-18?tid=1765991295645", 
     },
 
     # 例子：BTC 单一二元市场
     {
-        "name": "Bitcoin Up or Down on December 17?(By 12:00 ET)",
+        "name": "Bitcoin Up or Down on December 18?(By 12:00 ET)",
         "type": "binary",
-        "opinion_url": "https://app.opinion.trade/detail?topicId=2582",
-        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-17",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=2622",
+        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-18?tid=1765991263764",
     },
 
     {
