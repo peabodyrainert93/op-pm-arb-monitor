@@ -16,9 +16,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-#V1.5 优化版本
-#优化Opinion 为啥 22s：你每一轮都在“重建线程池 + 重建连接 + 双重重试”
-#Polymarket 为啥 8s：你在 /books 后面“补齐 missing 单个 /book”，missing 很多时会爆炸
+#V2.2 优化版本
+#PM 抓取和 Opinion 抓取并行
+#PM 并发 chunk
+#优化时间提醒
 
 # ===================== 基础配置（你只改这里也可以） =====================
 MARKET_JSON_DEFAULT = os.path.join(os.path.dirname(__file__), "market_token_pairs.json")
@@ -251,20 +252,33 @@ def parse_best_bid_ask(book: Dict[str, Any]) -> Dict[str, Optional[float]]:
     bids = book.get("bids") or []
     asks = book.get("asks") or []
 
-    bids_sorted = sorted(bids, key=lambda x: ffloat(x.get("price")) or -1e18, reverse=True)
-    asks_sorted = sorted(asks, key=lambda x: ffloat(x.get("price")) or 1e18, reverse=False)
+    best_bid = None
+    best_bid_size = None
+    for x in bids:
+        p = ffloat(x.get("price"))
+        if p is None:
+            continue
+        if (best_bid is None) or (p > best_bid):
+            best_bid = p
+            best_bid_size = ffloat(x.get("size"))
 
-    bb = ffloat(bids_sorted[0].get("price")) if bids_sorted else None
-    bbs = ffloat(bids_sorted[0].get("size")) if bids_sorted else None
-    ba = ffloat(asks_sorted[0].get("price")) if asks_sorted else None
-    bas = ffloat(asks_sorted[0].get("size")) if asks_sorted else None
+    best_ask = None
+    best_ask_size = None
+    for x in asks:
+        p = ffloat(x.get("price"))
+        if p is None:
+            continue
+        if (best_ask is None) or (p < best_ask):
+            best_ask = p
+            best_ask_size = ffloat(x.get("size"))
 
     return {
-        "best_bid": bb,
-        "best_bid_size": bbs,
-        "best_ask": ba,
-        "best_ask_size": bas,
+        "best_bid": best_bid,
+        "best_bid_size": best_bid_size,
+        "best_ask": best_ask,
+        "best_ask_size": best_ask_size,
     }
+
 
 # ===================== Opinion 拉订单簿 =====================
 def opinion_fetch_orderbook(token_id: str, api_key: str, limiter: RateLimiter) -> Dict[str, Any]:
@@ -320,12 +334,16 @@ def polymarket_fetch_books_batch(
         return out
 
     headers = {"Content-Type": "application/json", "Accept": "application/json", "User-Agent": USER_AGENT}
-    s = get_session("poly")
 
-    for i in range(0, len(token_ids), chunk_size):
-        chunk = token_ids[i:i + chunk_size]
+    # 先切 chunk
+    chunks: List[List[str]] = [
+        token_ids[i:i + chunk_size] for i in range(0, len(token_ids), chunk_size)
+    ]
+    if len(chunks) == 1:
+        # 只有一个 chunk：没必要并发，直接请求一次（更省线程开销）
+        chunk = chunks[0]
         body = [{"token_id": tid} for tid in chunk]
-
+        s = get_session("poly")
         try:
             arr = request_json(
                 "POST",
@@ -338,7 +356,7 @@ def polymarket_fetch_books_batch(
                 timeout=(8, 25),
             )
         except Exception as e:
-            print(f"[WARN] Polymarket /books chunk failed, will fallback singles. err={e}")
+            print(f"[WARN] Polymarket /books chunk failed. err={e}")
             arr = None
 
         if isinstance(arr, list):
@@ -347,17 +365,82 @@ def polymarket_fetch_books_batch(
                 if tid:
                     out[tid] = obj
 
-            if len(arr) == len(chunk):
-                for tid, obj in zip(chunk, arr):
-                    out.setdefault(tid, obj)
+        # 缺失就当空簿
+        for tid in chunk:
+            out.setdefault(tid, {"bids": [], "asks": [], "_missing_from_books": True})
+        return out
 
-        missing = [tid for tid in chunk if tid not in out]
-        if missing:
-            # ✅ /books 没返回的 token，大概率就是没有 orderbook（404 也被你视为正常空簿）:contentReference[oaicite:13]{index=13}
-            for tid in missing:
-                out[tid] = {"bids": [], "asks": [], "_missing_from_books": True}
+    # === 并发拉多个 chunk ===
+    def _fetch_one_chunk(chunk: List[str]) -> Dict[str, Dict[str, Any]]:
+        local: Dict[str, Dict[str, Any]] = {}
+        body = [{"token_id": tid} for tid in chunk]
+        s = get_session("poly")  # 注意：每个线程拿自己的 session（requests.Session 不要跨线程共享）
+
+        try:
+            arr = request_json(
+                "POST",
+                POLY_BOOKS_BATCH_ENDPOINT,
+                session=s,
+                headers=headers,
+                json_body=body,
+                limiter=limiter,     # 仍然走限速（线程安全）
+                tries=4,
+                timeout=(8, 25),
+            )
+        except Exception as e:
+            print(f"[WARN] Polymarket /books chunk failed. err={e}")
+            arr = None
+
+        if isinstance(arr, list):
+            for obj in arr:
+                tid = str(obj.get("token_id") or obj.get("asset_id") or "")
+                if tid:
+                    local[tid] = obj
+
+        # 缺失就当空簿（不要 fallback /book）
+        for tid in chunk:
+            local.setdefault(tid, {"bids": [], "asks": [], "_missing_from_books": True})
+
+        return local
+
+    # 2~4 个线程足够（通常就 2 个 chunk）
+    max_workers = min(4, len(chunks))
+    with ThreadPoolExecutor(max_workers=max_workers) as ex:
+        futs = [ex.submit(_fetch_one_chunk, c) for c in chunks]
+        for fut in as_completed(futs):
+            part = fut.result()
+            out.update(part)
 
     return out
+
+
+def fetch_poly_books(poly_tokens: List[str], pm_limiter: RateLimiter, chunk_size: int = 200):
+    """
+    把 Polymarket 的批量抓取 + 解析封装成一个函数，
+    方便放到线程池里并发执行。
+    返回：(poly_books, t_fetch, t_parse, t_total)
+    """
+    t0 = time.perf_counter()
+
+    # 1) fetch
+    t_fetch0 = time.perf_counter()
+    raw = polymarket_fetch_books_batch(poly_tokens, pm_limiter, chunk_size=chunk_size)
+    t_fetch = time.perf_counter() - t_fetch0
+
+    # 2) parse
+    t_parse0 = time.perf_counter()
+    poly_books: Dict[str, Dict[str, Optional[float]]] = {}
+    for tid, obj in raw.items():
+        try:
+            poly_books[tid] = parse_best_bid_ask(obj)
+        except Exception:
+            pass
+    t_parse = time.perf_counter() - t_parse0
+
+    t_total = time.perf_counter() - t0
+    return poly_books, t_fetch, t_parse, t_total
+
+
 
 # ===================== Gamma：拿 event endDate（带缓存） =====================
 _event_meta_lock = threading.Lock()
@@ -453,6 +536,10 @@ def leg_is_within_days(leg: Dict[str, Any], max_days: int, gamma_limiter: Option
 
     now_utc = datetime.now(timezone.utc)
     delta = end_dt - now_utc
+
+    # ✅新增：把剩余天数写回 leg，后面阈值分段要用
+    leg["_days_to_expiry"] = delta.total_seconds() / 86400.0
+    leg["_pm_end_dt"] = end_dt  # 可选，方便排查
 
     # 已过期：不监控
     if delta.total_seconds() < 0:
@@ -608,12 +695,17 @@ def main():
 
     # 这些你完全可以只改 default，不传命令行参数
     ap.add_argument("--interval", type=float, default=1.0, help="轮询间隔秒")
-    ap.add_argument("--delta-cents", type=float, default=1.7, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
+    ap.add_argument("--delta-cents", type=float, default=1.8, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
     ap.add_argument("--cooldown", type=int, default=180, help="同一条机会最短提醒间隔(秒)")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出")
 
-    ap.add_argument("--workers", type=int, default=260, help="Opinion 并发线程数")
-    ap.add_argument("--op-qps", type=float, default=12.0, help="Opinion 限速 QPS（线程共享）")
+    ap.add_argument("--short-days", type=int, default=30, help="剩余天数 < short-days 走短期阈值")
+    ap.add_argument("--delta-short", type=float, default=1.80, help="剩余天数 < short-days 的提醒阈值(%%)")
+    ap.add_argument("--delta-mid", type=float, default=2.50, help="short-days 到 max-days-to-expiry 的提醒阈值(%%)")
+
+
+    ap.add_argument("--workers", type=int, default=300, help="Opinion 并发线程数")
+    ap.add_argument("--op-qps", type=float, default=13.0, help="Opinion 限速 QPS（线程共享）")
     ap.add_argument("--pm-qps", type=float, default=8.0, help="Polymarket 限速 QPS（/books 批量也算一次）")
     ap.add_argument("--gamma-qps", type=float, default=2.0, help="Gamma 限速 QPS（仅 endDate 缺失时 fallback 用）")
 
@@ -639,12 +731,28 @@ def main():
     if not legs:
         raise SystemExit("JSON 里没有解析出任何可监控的 token leg")
 
-    delta = args.delta_cents / 100.0
-    threshold = 1.0 - delta
+
 
     op_keys = get_opinion_keys()
     if not op_keys:
         raise SystemExit("未配置 Opinion API Key：请设置 OPINION_API_KEYS 或 OPINION_API_KEY")
+    
+    # ====== 新增：给单条 leg 算 threshold======
+    def threshold_for_leg(leg, args) -> float:
+        days = leg.get("_days_to_expiry")
+
+        # days 取不到时（极少数 endDate 缺失且 gamma 也拿不到），用原来的 delta-cents 兜底
+        if not isinstance(days, (int, float)):
+            delta_pct = args.delta_cents
+        else:
+            # 规则：<30 天用 1.80%，30-60 天用 2.50%
+            delta_pct = args.delta_short if days < args.short_days else args.delta_mid
+
+        # 可选：写回去，方便你在 alert 里打印本次用的阈值
+        leg["_delta_pct_used"] = delta_pct
+
+        return 1.0 - (delta_pct / 100.0)
+
 
     # 每个 key 一个 limiter：args.op_qps 视为“每个 key 的 QPS”
     op_limiters = [RateLimiter(args.op_qps) for _ in op_keys]
@@ -667,12 +775,18 @@ def main():
 
     print(f"=== arb_monitor 启动 ===")
     print(f"Opinion API keys={len(op_keys)} (op_qps per key={args.op_qps})")
-    print(f"legs: {len(legs)}, interval={args.interval}s, threshold=sum<{threshold:.4f} (delta={delta:.4f})")
+    print(
+        f"legs: {len(legs)}, interval={args.interval}s | "
+        f"rule: days < {args.short_days} => {args.delta_short:.2f}% (sum<{1-args.delta_short/100:.4f}), "
+        f"{args.short_days}-{args.max_days_to_expiry} => {args.delta_mid:.2f}% (sum<{1-args.delta_mid/100:.4f}) | "
+        f"fallback delta-cents={args.delta_cents:.2f}%"
+    )
     print(f"min_deploy=${args.min_deploy_usd:.2f}, max_days_to_expiry={args.max_days_to_expiry}d")
     print(f"Opinion workers={args.workers}, op_qps={args.op_qps}, pm_batch={args.pm_batch}, pm_qps={args.pm_qps}\n")
 
     # main() 里 while True 外面，先建一次
     op_executor = ThreadPoolExecutor(max_workers=args.workers)
+    pm_executor = ThreadPoolExecutor(max_workers=4)
     tg_executor = ThreadPoolExecutor(max_workers=4)
 
     # ===== Warmup：预创建线程 + 在线程内初始化 opinion Session（减少第一轮冷启动抖动）=====
@@ -701,7 +815,7 @@ def main():
 
             if not active_legs:
                 # 全被过滤了，就等下一轮
-                dt = time.time() - t0
+                dt = time.perf_counter() - t0
                 sleep_for = max(0.0, args.interval - dt)
 
                 print(
@@ -718,6 +832,11 @@ def main():
 
             opinion_tokens = sorted({leg["op_yes"] for leg in active_legs} | {leg["op_no"] for leg in active_legs})
             poly_tokens = sorted({leg["pm_yes"] for leg in active_legs} | {leg["pm_no"] for leg in active_legs})
+
+            # === 先启动 PM（后台跑），让 PM 的 fetch 和 Opinion 并行 ===
+            pm_future = None
+            if args.pm_batch:
+                pm_future = pm_executor.submit(fetch_poly_books, poly_tokens, pm_limiter, 200)
 
             # 1) Opinion（并发 + 限速 + 重试）
             t_op0 = time.perf_counter()
@@ -740,29 +859,38 @@ def main():
             t_op = time.perf_counter() - t_op0
 
             # 2) Polymarket（批量优先；缺失再补齐）
-            t_pm0 = time.perf_counter()
-            poly_books: Dict[str, Dict[str, Optional[float]]] = {}
+            # === 等 PM 结果（此时 Opinion 已经跑完了）===
             if args.pm_batch:
-                raw = polymarket_fetch_books_batch(poly_tokens, pm_limiter, chunk_size=200)
-                for tid, obj in raw.items():
-                    try:
-                        poly_books[tid] = parse_best_bid_ask(obj)
-                    except Exception:
-                        pass
+                poly_books, t_pm_fetch, t_pm_parse, t_pm = pm_future.result()
             else:
+                # 如果你真的用单本模式（pm_batch=False），就先保持你原来的单本逻辑不动
+                # （单本模式本来就会很慢，不建议用于你这种高频轮询）
+                t_pm0 = time.perf_counter()
+                poly_books = {}
+                t_pm_fetch = 0.0
+                t_pm_parse = 0.0
+
                 for tid in poly_tokens:
                     try:
+                        t1 = time.perf_counter()
                         obj = polymarket_fetch_book_single(tid, pm_limiter)
+                        t_pm_fetch += (time.perf_counter() - t1)
+
+                        t2 = time.perf_counter()
                         poly_books[tid] = parse_best_bid_ask(obj)
+                        t_pm_parse += (time.perf_counter() - t2)
                     except Exception as e:
                         print(f"[WARN] Polymarket token {tid} /book failed: {e}")
-            t_pm = time.perf_counter() - t_pm0
+
+                t_pm = time.perf_counter() - t_pm0
+
 
             # 3) 套利
             t_arb0 = time.perf_counter()
             sent_cnt = 0
 
             for leg in active_legs:
+                leg_threshold = threshold_for_leg(leg, args)
 
                 pm_yes = poly_books.get(leg["pm_yes"])
                 pm_no = poly_books.get(leg["pm_no"])
@@ -778,7 +906,7 @@ def main():
 
                     if pm_price is not None and op_price is not None:
                         sum_cost = pm_price + op_price
-                        if sum_cost < threshold:
+                        if sum_cost < leg_threshold:
                             margin = 1.0 - sum_cost
                             max_shares = min2(pm_size, op_size)
                             deploy_capital = (max_shares * sum_cost) if max_shares is not None else None
@@ -808,7 +936,7 @@ def main():
 
                     if pm_price is not None and op_price is not None:
                         sum_cost = pm_price + op_price
-                        if sum_cost < threshold:
+                        if sum_cost < leg_threshold:
                             margin = 1.0 - sum_cost
                             max_shares = min2(pm_size, op_size)
                             deploy_capital = (max_shares * sum_cost) if max_shares is not None else None
@@ -835,10 +963,10 @@ def main():
 
             print(
                 f"[ROUND] dt={dt:.3f}s | filter={t_filter:.3f}s | "
-                f"op={t_op:.3f}s | pm={t_pm:.3f}s | arb+tg={t_arb:.3f}s | "
-                f"active_legs={len(active_legs)} op_tokens={len(opinion_tokens)} pm_tokens={len(poly_tokens)} "
-                f"alerts={sent_cnt} | sleep={sleep_for:.3f}s"
+                f"op={t_op:.3f}s | pm={t_pm:.3f}s(fetch={t_pm_fetch:.3f}s,parse={t_pm_parse:.3f}s) | "
+                f"arb+tg={t_arb:.3f}s | ..."
             )
+
 
             if args.once:
                 print("=== once 模式结束 ===")
@@ -850,6 +978,7 @@ def main():
 
     finally:
         op_executor.shutdown(wait=True)
+        pm_executor.shutdown(wait=True)
         tg_executor.shutdown(wait=True)
 
 if __name__ == "__main__":

@@ -6252,6 +6252,274 @@
   },
   {
     "schema_version": 6,
+    "name": "NFC North Winner",
+    "type": "categorical",
+    "opinion_market_id": 182,
+    "polymarket_event_slug": "nfc-north-winner-11",
+    "polymarket_event_id": "23666",
+    "polymarket_event_title": "NFC North Winner ",
+    "polymarket_event_endDate": "2026-01-06T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Chicago",
+        "opinion": {
+          "market_id": 2665,
+          "yes_token_id": "25187733635833717566860572490543636420556991536294204824358037005773684293048",
+          "no_token_id": "10525775587884724821059848175060056872287185252274656741938891038097376085099"
+        },
+        "polymarket": {
+          "market_id": "540297",
+          "question": "Will the Chicago Bears win the NFC North?",
+          "candidate": "Chicago",
+          "yes_token_id": "67143393443005009281760867024410390893201286243477554481465972393261228013416",
+          "no_token_id": "45905810568621650246090484175083578957682865078787335119517177813319648304925",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "Green Bay",
+        "opinion": {
+          "market_id": 2666,
+          "yes_token_id": "3577640384045282513591683574774537711972151500022799806456081489615763884894",
+          "no_token_id": "109287091620567926263478520025601169956730247846400928232759199080410801239248"
+        },
+        "polymarket": {
+          "market_id": "540295",
+          "question": "Will the Green Bay Packers win the NFC North?",
+          "candidate": "Green Bay",
+          "yes_token_id": "111350089919872137832654626711404206535453030514210455308805142256833434341013",
+          "no_token_id": "96277410571872134788557274352898453890060575069660363696393587532929362842445",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "Detroit",
+        "opinion": {
+          "market_id": 2667,
+          "yes_token_id": "37466892123195002714381779586927628027738953455099408390381421027334862830951",
+          "no_token_id": "24035284458119941595338867799588085436803225762529797784798661456906376432060"
+        },
+        "polymarket": {
+          "market_id": "540294",
+          "question": "Will the Detroit Lions win the NFC North?",
+          "candidate": "Detroit",
+          "yes_token_id": "9587109844108057331186595438987915460478527716838147693495106829305202216546",
+          "no_token_id": "112456835579012101014820056245501853675139619148962743012298793667458867842015",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "540296",
+        "question": "Will the Minnesota Vikings win the NFC North?",
+        "candidate": "Minnesota",
+        "yes_token_id": "27326519778052831807953687816562181600258318498226055417143397306495701855849",
+        "no_token_id": "115063281241581268702282307121626869240758923229318819673664938557945303587686",
+        "endDate": "2026-01-06T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "NFC South Winner",
+    "type": "categorical",
+    "opinion_market_id": 181,
+    "polymarket_event_slug": "nfc-south-winner-11",
+    "polymarket_event_id": "23667",
+    "polymarket_event_title": "NFC South Winner",
+    "polymarket_event_endDate": "2026-01-06T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Tampa Bay",
+        "opinion": {
+          "market_id": 2663,
+          "yes_token_id": "104711475262427879379267104315081581272177288532048014526232473209650289646619",
+          "no_token_id": "108649531528279062573870341679052876554456979866731334514663223104173073332619"
+        },
+        "polymarket": {
+          "market_id": "540298",
+          "question": "Will the Tampa Bay Buccaneers win the NFC South?",
+          "candidate": "Tampa Bay",
+          "yes_token_id": "87244827030670169133541763591225719370428555004054262542750081274859964587988",
+          "no_token_id": "98304349282081807214950357612657118400929229242770571028152081113087488306137",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "Carolina",
+        "opinion": {
+          "market_id": 2664,
+          "yes_token_id": "100286833399942951666076541025327584692077324397863053935731523274891633916281",
+          "no_token_id": "22590389508611256925247099186876511060501764807796020636612731950654626088496"
+        },
+        "polymarket": {
+          "market_id": "540301",
+          "question": "Will the Carolina Panthers win the NFC South?",
+          "candidate": "Carolina",
+          "yes_token_id": "107756046811149593837654597906348341872064150970467495161852677186768432566564",
+          "no_token_id": "5935254050025083406238308687799513830664619539093494600636149876402557791147",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "540299",
+        "question": "Will the New Orleans Saints win the NFC South?",
+        "candidate": "New Orleans",
+        "yes_token_id": "73311441117569665718581514320674525991448393224343635516616102065148747918341",
+        "no_token_id": "34582415960921329392490170556380528963590085384397163342812566870275634828820",
+        "endDate": "2026-01-06T12:00:00Z"
+      },
+      {
+        "market_id": "540300",
+        "question": "Will the Atlanta Falcons win the NFC South?",
+        "candidate": "Atlanta",
+        "yes_token_id": "46105236399696476552358061677383778879025998890598178399214109577899697821601",
+        "no_token_id": "24131134225919468368560920315802921995232943342729120929804073992653491561117",
+        "endDate": "2026-01-06T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "NFC East Winner",
+    "type": "categorical",
+    "opinion_market_id": 180,
+    "polymarket_event_slug": "nfc-east-winner-1",
+    "polymarket_event_id": "23664",
+    "polymarket_event_title": "NFC East Winner",
+    "polymarket_event_endDate": "2026-01-06T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Philadelphia",
+        "opinion": {
+          "market_id": 2661,
+          "yes_token_id": "66879087595758996957470078793737373779624736239063091749842517453929489950235",
+          "no_token_id": "17600097498507276480735685442214762269287618712039333773334435195851155033367"
+        },
+        "polymarket": {
+          "market_id": "540286",
+          "question": "Will the Philadelphia Eagles win the NFC East?",
+          "candidate": "Philadelphia",
+          "yes_token_id": "113066016793914288284817678469748122573728802286124349229437362153805325913412",
+          "no_token_id": "108624703055575614710297128661330760641434722782573027004786574078024117202843",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "Dallas",
+        "opinion": {
+          "market_id": 2662,
+          "yes_token_id": "114186347572081396002667260872214588742732276163433609012284365038992375209728",
+          "no_token_id": "61981256800930181429512842393883030166057232796599814395747719162486688661292"
+        },
+        "polymarket": {
+          "market_id": "540287",
+          "question": "Will the Dallas Cowboys win the NFC East?",
+          "candidate": "Dallas",
+          "yes_token_id": "36370923334430328293026416987958022636075051580650364127832588046148441030116",
+          "no_token_id": "36168649572317787257362020636420378888053340928159353894177847681467076341347",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "540288",
+        "question": "Will the New York Giants win the NFC East?",
+        "candidate": "New York G",
+        "yes_token_id": "41881466172636777337056302987242522638293252772119717715112905234020529392203",
+        "no_token_id": "61918679126158389105503934412590060993949421933163536431485063708689671971875",
+        "endDate": "2026-01-06T12:00:00Z"
+      },
+      {
+        "market_id": "540289",
+        "question": "Will the Washington Commanders win the NFC East?",
+        "candidate": "Washington",
+        "yes_token_id": "18337559493832905593403007144516130072624919517784047837837365315616638664490",
+        "no_token_id": "23412093194220569621282684731592832030321511467825769187594313526649698181100",
+        "endDate": "2026-01-06T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "NFC West Winner",
+    "type": "categorical",
+    "opinion_market_id": 179,
+    "polymarket_event_slug": "nfc-west-winner-1",
+    "polymarket_event_id": "23665",
+    "polymarket_event_title": "NFC West Winner ",
+    "polymarket_event_endDate": "2026-01-06T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Seattle",
+        "opinion": {
+          "market_id": 2658,
+          "yes_token_id": "60785537482494349471695104613757750560216706637369543911551508874509557512120",
+          "no_token_id": "16596016773572108971508355633909077990054606489115810455579763425988616200031"
+        },
+        "polymarket": {
+          "market_id": "540292",
+          "question": "Will the Seattle Seahawks win the NFC West?",
+          "candidate": "Seattle",
+          "yes_token_id": "78320563920108227955052485481741320159700440594130403008318628165473805420188",
+          "no_token_id": "112731600250099208380084785013868223902286688368371562996597468350854577616874",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "Los Angeles R",
+        "opinion": {
+          "market_id": 2659,
+          "yes_token_id": "110568740990330847636447979821830474473605088748741869946962780428461816405816",
+          "no_token_id": "65659302698394894166453622604834065681396144390078740385954495404154970543591"
+        },
+        "polymarket": {
+          "market_id": "540291",
+          "question": "Will the Los Angeles Rams win the NFC West?",
+          "candidate": "Los Angeles R",
+          "yes_token_id": "72582755734509717859849307142403874864024256012414005429812112143275702844107",
+          "no_token_id": "106233691032937334963508649262462387610806949672348129366412366689883456740599",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "San Francisco",
+        "opinion": {
+          "market_id": 2660,
+          "yes_token_id": "57194086112678942289733338561157791047430270209096450257724631778405700225276",
+          "no_token_id": "82840786630014848897937656572272585381750322831898329353234126082247813785772"
+        },
+        "polymarket": {
+          "market_id": "540290",
+          "question": "Will the San Francisco 49ers win the NFC West?",
+          "candidate": "San Francisco",
+          "yes_token_id": "45877329786140764357342055336839082399151877660747489503061352018871101063842",
+          "no_token_id": "8235124967030276795050798060068745407967789953992350652295525450387973365852",
+          "endDate": "2026-01-06T12:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "540293",
+        "question": "Will the Arizona Cardinals win the NFC West?",
+        "candidate": "Arizona",
+        "yes_token_id": "75337623783662822432335546523741323784826051179321931726539327281004819743284",
+        "no_token_id": "5173370688441229499698386130832564706428363755204233259171383691181814273290",
+        "endDate": "2026-01-06T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
     "name": "Bitcoin above ... on December 18?(By 12:00 ET)",
     "type": "categorical",
     "opinion_market_id": 176,
