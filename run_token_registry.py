@@ -10,6 +10,8 @@ def main():
     ap.add_argument("--retries", type=int, default=None, help="HTTP 最大重试次数")
     ap.add_argument("--backoff", type=float, default=None, help="退避基数秒（越大越保守）")
     ap.add_argument("--refresh", action="store_true", help="忽略缓存，强制重新抓取")
+    ap.add_argument("--keep-expired", action="store_true", help="不删除已过期市场（默认会清理）")
+    ap.add_argument("--expiry-grace-hours", type=float, default=12.0, help="过期宽限期（小时），默认12")
     args = ap.parse_args()
 
     # ✅ 在 import token_registry_core 之前写入环境变量（core 会在 import 时读取）
@@ -38,7 +40,15 @@ def main():
         refresh=args.refresh,
         keep_cache_on_error=True,
     )
+    if not args.keep_expired:
+        results = core.prune_expired_markets(
+            results,
+            grace_seconds=float(args.expiry_grace_hours or 0.0) * 3600.0,
+            verbose=True,
+        )
+
     core.write_market_token_pairs_json(results, out_path)
+
     print(f"=== 已写入 {out_path} ===")
 
 if __name__ == "__main__":

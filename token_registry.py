@@ -29,13 +29,6 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
     },
 
     {
-        "name": "Bank of Japan decision in December?",
-        "type": "categorical",  # 多项
-        "opinion_url": "https://app.opinion.trade/detail?topicId=74&type=multi",
-        "polymarket_url": "https://polymarket.com/event/bank-of-japan-decision-in-december?tid=1765640885419",    
-    },
-
-    {
         "name": "What price will gold close at in 2025?",
         "type": "categorical",  # 多项
         "opinion_url": "https://app.opinion.trade/detail?topicId=62&type=multi",
@@ -266,13 +259,6 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
         "polymarket_url": "https://polymarket.com/event/highest-grossing-movie-in-2025?tid=1765644316875",    
     },
 
-    {
-        "name": "Boxing: Jake Paul vs. Anthony Joshua",
-        "type": "categorical",  # 多项
-        "opinion_url": "https://app.opinion.trade/detail?topicId=165&type=multi", 
-        "polymarket_url": "https://polymarket.com/event/boxing-jake-paul-vs-anthony-joshua-third-option-included?tid=1765818628889", 
-    },
-
 
     {
         "name": "OpenAI IPO by...?",
@@ -296,26 +282,167 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
     },
 
     {
-        "name": "Bitcoin above ... on December 18?(By 12:00 ET)",
+        "name": "NFC North Winner",
         "type": "categorical",  # 多项
-        "opinion_url": "https://app.opinion.trade/detail?topicId=176&type=multi", 
-        "polymarket_url": "https://polymarket.com/event/bitcoin-above-on-december-18?tid=1765991295645", 
+        "opinion_url": "https://app.opinion.trade/detail?topicId=182&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/nfc-north-winner-11", 
+    },
+
+    {
+        "name": "NFC South Winner",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=181&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/nfc-south-winner-11?tid=1766162737312", 
+    },
+
+    {
+        "name": "NFC East Winner",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=180&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/nfc-east-winner-1?tid=1766162769629", 
+    },
+
+    {
+        "name": "NFC West Winner",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=179&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/nfc-west-winner-1?tid=1766162800939", 
+    },
+
+    {
+        "name": "Another 7.0 or above earthquake by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=187&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/another-7pt0-or-above-earthquake-by-548?tid=1766254253899", 
+    },
+
+    {
+        "name": "Thailand x Cambodia ceasefire by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=188&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/thailand-x-cambodia-ceasefire-by-december-15?tid=1766254414222", 
+    },
+
+    {
+        "name": "Will Tempo launch a token by ... ?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=192&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/will-tempo-launch-a-token-by?tid=1766401986769", 
+    },
+
+    {
+        "name": "Which CEOs will be out before 2027?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=193&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/which-ceos-will-be-out-before-2027?tid=1766402031321", 
+    },
+
+    {
+        "name": "How much revenue will the U.S. raise from tariffs in 2025?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=196&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/how-much-revenue-will-the-us-raise-from-tariffs-in-2025?tid=1766402129244", 
+    },
+
+    {
+        "name": "Tesla launches unsupervised full self driving (FSD) by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=198&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/tesla-launches-unsupervised-full-self-driving-fsd-by?tid=1766402197169", 
+    },
+
+    {
+        "name": "Will Paradex launch a token by ...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=175&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/will-paradex-launch-a-token-by?tid=1766420088584", 
+    },
+
+    {
+        "name": "Okbet Arena AI trading competition winner?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=200&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/okbet-arena-ai-trading-competition-winner?tid=1766512968749", 
+    },
+
+    {
+        "name": "Oscars 2026: Best Cinematography Winner",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=210&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/oscars-2026-best-cinematography-winner", 
+    },
+
+    {
+        "name": "Oscars 2026: Best Film Editing Winner",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=211&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/oscars-2026-best-film-editing-winner?tid=1766810796070", 
+    },
+
+    {
+        "name": "What will be the top US Netflix show this week?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=214&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/what-will-be-the-top-us-netflix-show-this-week-648?tid=1766810818769", 
+    },
+
+    {
+        "name": "Who will die in Stranger Things: Season 5?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=215&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/who-will-die-in-stranger-things-season-5?tid=1766810860025", 
+    },
+
+    {
+        "name": "Bitcoin above ... on December 25?(By 12:00 ET)",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=206&type=multi", 
+        "polymarket_url": "https://polymarket.com/event/bitcoin-above-on-december-25?tid=1766593283862", 
     },
 
     # 例子：BTC 单一二元市场
     {
-        "name": "Bitcoin Up or Down on December 18?(By 12:00 ET)",
+        "name": "Bitcoin Up or Down on December 25?(By 12:00 ET)",
         "type": "binary",
-        "opinion_url": "https://app.opinion.trade/detail?topicId=2622",
-        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-18?tid=1765991263764",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=3107",
+        "polymarket_url": "https://polymarket.com/event/bitcoin-up-or-down-on-december-25?tid=1766593085499",
     },
 
     {
-        "name": "TikTok sale announced by Dec 31?",
+        "name": "Will MetaMask launch a token in 2025?",
         "type": "binary",
-        "opinion_url": "https://app.opinion.trade/detail?topicId=1284",
-        "polymarket_url": "https://polymarket.com/event/tiktok-sale-announced-in-2025?tid=1765600930291",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=793",
+        "polymarket_url": "https://polymarket.com/event/will-metamask-launch-a-token-in-2025?tid=1766657880719",
     },
+
+    {
+        "name": "Will there be another US government shutdown by January 31?",
+        "type": "binary",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=3114",
+        "polymarket_url": "https://polymarket.com/event/will-there-be-another-us-government-shutdown-by-january-31?tid=1766658701541",
+    },
+
+    {
+        "name": "Will Alex Honnold free solo Taipei 101?",
+        "type": "binary",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=3073",
+        "polymarket_url": "https://polymarket.com/event/will-alex-honnold-free-solo-taipei-101?tid=1766513016885",
+    },
+
+    {
+        "name": "Israel strikes Iran by March 31, 2026?",
+        "type": "binary",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=3039",
+        "polymarket_url": "https://polymarket.com/event/israel-strikes-iran-by-march-31-2026?tid=1766422960785",
+    },
+
+    {
+        "name": "US strike on Syria by December 31?",
+        "type": "binary",
+        "opinion_url": "https://app.opinion.trade/detail?topicId=3057",
+        "polymarket_url": "https://polymarket.com/event/us-strike-on-syria-by-529?tid=1766512809426",
+    },
+
 
     {
         "name": "Another critical Cloudflare incident by December 31?",

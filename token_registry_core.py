@@ -5,6 +5,7 @@ import re
 import time
 import random
 import threading
+from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Any, Optional, Tuple
 from urllib.parse import urlparse, parse_qs
 
@@ -1098,6 +1099,192 @@ def build_all(
                     print(f"  ❌ 失败：{e}\n")
 
     return [r for r in results_by_index if r is not None]
+
+def _parse_iso_dt(s: Any) -> Optional[datetime]:
+    if not s or not isinstance(s, str):
+        return None
+    t = s.strip()
+    # 兼容 "Z"
+    t = t.replace("Z", "+00:00")
+    try:
+        dt = datetime.fromisoformat(t)
+    except Exception:
+        return None
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt.astimezone(timezone.utc)
+
+def _collect_end_dts(entry: Dict[str, Any]) -> List[datetime]:
+    """收集一个 entry 里所有能拿到的 endDate（binary/categorical 都支持）。"""
+    dts: List[datetime] = []
+
+    mtype = entry.get("type")
+    if mtype == "binary":
+        pm = entry.get("polymarket") or {}
+        dt = _parse_iso_dt(pm.get("endDate") or pm.get("end_date"))
+        if dt:
+            dts.append(dt)
+
+    elif mtype == "categorical":
+        # 顶层 event endDate
+        dt0 = _parse_iso_dt(entry.get("polymarket_event_endDate") or entry.get("polymarket_event_end_date"))
+        if dt0:
+            dts.append(dt0)
+
+        # pairs 子市场 endDate（你 v6 已经按 market 级别写入）
+        for p in (entry.get("pairs") or []):
+            if not isinstance(p, dict):
+                continue
+            pm = p.get("polymarket") or {}
+            dt = _parse_iso_dt(pm.get("endDate") or pm.get("end_date"))
+            if dt:
+                dts.append(dt)
+
+        # unmatched_polymarket 也可能有 endDate
+        for u in (entry.get("unmatched_polymarket") or []):
+            if not isinstance(u, dict):
+                continue
+            dt = _parse_iso_dt(u.get("endDate") or u.get("end_date"))
+            if dt:
+                dts.append(dt)
+
+    return dts
+
+def prune_expired_markets(
+    results: List[Dict[str, Any]],
+    *,
+    now_utc: Optional[datetime] = None,
+    grace_seconds: float = 0.0,
+    verbose: bool = True,
+) -> List[Dict[str, Any]]:
+    """
+    - binary：若 polymarket.endDate 已过期 -> 删除整个 entry
+    - categorical：
+        1) 先按每个子 market 的 endDate 过滤 pairs / unmatched_polymarket
+        2) 若过滤后没有任何可用 pairs，且整体 latest endDate 也过期 -> 删除 entry
+    """
+    now_utc = now_utc or datetime.now(timezone.utc)
+    grace = timedelta(seconds=float(grace_seconds or 0.0))
+
+    kept: List[Dict[str, Any]] = []
+    removed: List[Dict[str, Any]] = []
+    removed_children_cnt = 0
+    removed_entries_detail: List[Dict[str, Any]] = []
+    removed_children_detail: List[Dict[str, Any]] = []
+
+    for entry in results:
+        if not isinstance(entry, dict):
+            continue
+
+        mtype = entry.get("type")
+        # 先对 categorical 做“子 market 级别”过滤（更符合你说的“删除过期市场”）
+        if mtype == "categorical":
+            # pairs
+            new_pairs = []
+            for p in (entry.get("pairs") or []):
+                if not isinstance(p, dict):
+                    continue
+                pm = p.get("polymarket") or {}
+                dt = _parse_iso_dt(pm.get("endDate") or pm.get("end_date"))
+                if dt and (dt + grace) < now_utc:
+                    removed_children_cnt += 1
+
+                    # ✅ 记录被删掉的 categorical 子市场（pairs）
+                    pm_mid = (pm.get("market_id") or pm.get("id") or "")
+                    removed_children_detail.append({
+                        "parent_name": entry.get("name", "UNNAMED"),
+                        "parent_type": "categorical",
+                        "parent_slug": entry.get("polymarket_event_slug") or (entry.get("polymarket") or {}).get("slug") or "",
+                        "where": "pairs",
+                        "pm_market_id": str(pm_mid),
+                        "candidate": (p.get("candidate") or pm.get("candidate") or ""),
+                        "endDate": (pm.get("endDate") or pm.get("end_date") or ""),
+                    })
+
+                    continue
+                new_pairs.append(p)
+            entry["pairs"] = new_pairs
+
+            # unmatched_polymarket
+            new_unmatched = []
+            for u in (entry.get("unmatched_polymarket") or []):
+                if not isinstance(u, dict):
+                    continue
+                dt = _parse_iso_dt(u.get("endDate") or u.get("end_date"))
+                if dt and (dt + grace) < now_utc:
+                    removed_children_cnt += 1
+
+                    # ✅ 记录被删掉的 categorical 子市场（unmatched_polymarket）
+                    removed_children_detail.append({
+                        "parent_name": entry.get("name", "UNNAMED"),
+                        "parent_type": "categorical",
+                        "parent_slug": entry.get("polymarket_event_slug") or (entry.get("polymarket") or {}).get("slug") or "",
+                        "where": "unmatched_polymarket",
+                        "pm_market_id": str(u.get("market_id") or ""),
+                        "candidate": (u.get("candidate") or ""),
+                        "endDate": (u.get("endDate") or u.get("end_date") or ""),
+                    })
+
+                    continue
+                new_unmatched.append(u)
+            entry["unmatched_polymarket"] = new_unmatched
+
+        # 再判定“整个 entry 是否过期”
+        dts = _collect_end_dts(entry)
+        latest = max(dts) if dts else None
+
+        # 规则：能拿到 latest endDate 且 latest 已过期 => 删除 entry
+        if latest and (latest + grace) < now_utc:
+            removed_entries_detail.append({
+                "name": entry.get("name", "UNNAMED"),
+                "type": entry.get("type", ""),
+                "slug": (entry.get("polymarket") or {}).get("slug") or entry.get("polymarket_event_slug") or "",
+                "latest_end": latest.isoformat(),
+                "reason": "latest_endDate_expired",
+            })
+            removed.append(entry)
+            continue
+
+        # categorical：如果 pairs 已空（没有可监控的 legs），仅当整体 endDate 已过期才移除（避免误删未过期但暂时没匹配到的 entry）
+        if mtype == "categorical" and not (entry.get("pairs") or []):
+            dts2 = _collect_end_dts(entry)
+            latest2 = max(dts2) if dts2 else None
+
+            if latest2 and (latest2 + grace) < now_utc:
+                removed_entries_detail.append({
+                    "name": entry.get("name", "UNNAMED"),
+                    "type": entry.get("type", ""),
+                    "slug": entry.get("polymarket_event_slug") or "",
+                    "latest_end": latest2.isoformat() if latest2 else "NA",
+                    "reason": "no_pairs_after_prune",
+                })
+                removed.append(entry)
+                continue
+
+        kept.append(entry)
+
+    if verbose:
+        print(f"🧹 prune_expired: entry kept={len(kept)} removed={len(removed)}; removed_child_markets={removed_children_cnt}")
+        # ✅ 打印删除的 entry（顶层市场）
+        if removed_entries_detail:
+            print("🗑️ removed entries:")
+            for d in removed_entries_detail:
+                print(f"  - {d['name']} | {d['type']} | {d['slug']} | latest_end={d['latest_end']} | reason={d['reason']}")
+        else:
+            print("🗑️ removed entries: (none)")
+
+        # ✅ 打印删除的 categorical 子市场（pairs / unmatched_polymarket）
+        if removed_children_detail:
+            print("🗑️ removed child markets:")
+            for c in removed_children_detail:
+                print(
+                    f"  - parent={c['parent_name']} | slug={c['parent_slug']} | where={c['where']} "
+                    f"| pm_market_id={c['pm_market_id']} | candidate={c['candidate']} | endDate={c['endDate']}"
+                )
+        else:
+            print("🗑️ removed child markets: (none)")
+
+    return kept
 
 
 def write_market_token_pairs_json(results: List[Dict[str, Any]], out_path: str) -> None:

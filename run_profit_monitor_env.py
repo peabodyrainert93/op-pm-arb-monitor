@@ -405,6 +405,7 @@ def run_once(
     pm_wallet: str,
     market_json_path: str,
     min_shares: float,
+    min_bid_size: float,
     threshold: float,
     cooldown_sec: int,
     dry_run: bool,
@@ -462,6 +463,14 @@ def run_once(
 
         sum_bid = float(pm_bb) + float(op_bb)
 
+        #只按盘口 size 过滤
+        pm_sz = float(pm_bbs or 0.0)
+        op_sz = float(op_bbs or 0.0)
+        if min(pm_sz, op_sz) < float(min_bid_size):
+            # 建议加一行 debug，方便你确认过滤在生效
+            print(f"[SKIP] size too small: pm={pm_sz:.4f} op={op_sz:.4f} (< {min_bid_size})")
+            continue
+
         key = f"{leg.get('pm_event_slug','')}/{leg.get('candidate','')}/{direction}"
         last = state.get(key, 0.0)
         ok_cooldown = (now - last) >= float(cooldown_sec)
@@ -488,8 +497,9 @@ def run_once(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", default=MARKET_JSON_DEFAULT, help="market_token_pairs.json 路径")
-    ap.add_argument("--interval", type=int, default=300, help="扫描间隔秒数（默认 900=15分钟）")
-    ap.add_argument("--min-shares", type=float, default=0.1, help="过滤持仓（sharesOwned/size）小于该值的仓位")
+    ap.add_argument("--interval", type=int, default=120, help="扫描间隔秒数（默认 120=2分钟）")
+    ap.add_argument("--min-shares", type=float, default=10.0, help="过滤持仓（sharesOwned/size）小于该值的仓位")
+    ap.add_argument("--min-bid-size", type=float, default=10.0, help="过滤 best bid 的挂单量（PM/OP 任一边 size 小于该值就不提醒）")
     ap.add_argument("--threshold", type=float, default=1.0, help="当 best bid 相加大于该值则提醒（默认 1.0）")
     ap.add_argument("--cooldown", type=int, default=1800, help="同一条提醒最短重复间隔秒数（默认 1800=30分钟）")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出（测试用）")
@@ -524,6 +534,7 @@ def main():
                 pm_wallet=pm_wallet,
                 market_json_path=args.json,
                 min_shares=float(args.min_shares),
+                min_bid_size=float(args.min_bid_size),
                 threshold=float(args.threshold),
                 cooldown_sec=int(args.cooldown),
                 dry_run=bool(args.dry_run),

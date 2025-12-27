@@ -214,84 +214,6 @@
   },
   {
     "schema_version": 6,
-    "name": "Bank of Japan decision in December?",
-    "type": "categorical",
-    "opinion_market_id": 74,
-    "polymarket_event_slug": "bank-of-japan-decision-in-december",
-    "polymarket_event_id": "67945",
-    "polymarket_event_title": "Bank of Japan decision in December?",
-    "polymarket_event_endDate": "2025-12-19T00:00:00Z",
-    "pairs": [
-      {
-        "candidate": "Decrease",
-        "opinion": {
-          "market_id": 1300,
-          "yes_token_id": "84100224450814547430465435774192852044005908325389123611867355622035246644578",
-          "no_token_id": "13272643381504573344489595237150842429713669320366138904431735036661213936418"
-        },
-        "polymarket": {
-          "market_id": "655652",
-          "question": "Bank of Japan decreases interest rates after December 2025 meeting?",
-          "candidate": "Decrease rates",
-          "yes_token_id": "7420391453812291938344967037896450744522271195231454078070382530567831037736",
-          "no_token_id": "52910356821328700886822295166340679720721517720334109343517480659073939913384",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      },
-      {
-        "candidate": "No Change",
-        "opinion": {
-          "market_id": 1301,
-          "yes_token_id": "691351799654734490560153616727126519357868951846096570070115151529114541154",
-          "no_token_id": "41029593870395184010989384085377869246650153956776456250372475770365566281666"
-        },
-        "polymarket": {
-          "market_id": "655653",
-          "question": "No change in Bank of Japan's interest rates after December 2025 meeting?",
-          "candidate": "No change",
-          "yes_token_id": "105285637887650363113108764975508864110017462194146876240686052776297310294618",
-          "no_token_id": "76097715751519387533432253354990104726070959468959687765228597572264142658160",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      },
-      {
-        "candidate": "25 bps increase",
-        "opinion": {
-          "market_id": 1302,
-          "yes_token_id": "55295956500010661561412369140238217016543463144860963855506911930382534018741",
-          "no_token_id": "55774978304947873439147477372204236718211514426206144197617145960349056452852"
-        },
-        "polymarket": {
-          "market_id": "655654",
-          "question": "Bank of Japan increases interest rates by 25 bps after December 2025 meeting?",
-          "candidate": "25 bps increase",
-          "yes_token_id": "65739514405721740874967699489832440941255240119012648834563688987034655635465",
-          "no_token_id": "18992885108826963219927445668038152316749506543848724107660047803568066593023",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      },
-      {
-        "candidate": "50+ bps increase",
-        "opinion": {
-          "market_id": 1303,
-          "yes_token_id": "80263951745143831597735557098598542603805390842902385794102704453927308473805",
-          "no_token_id": "26413548283623913212664766415227232611521843567421075281707202274170109873787"
-        },
-        "polymarket": {
-          "market_id": "655655",
-          "question": "Bank of Japan increases interest rates by 50+ bps after December 2025 meeting?",
-          "candidate": "50+ bps increase",
-          "yes_token_id": "104124788525358247966389896717349146294403056788251167595599925850320036421562",
-          "no_token_id": "2925540257074371316916942028266993786534859408683552790615575123363741700401",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      }
-    ],
-    "unmatched_opinion": [],
-    "unmatched_polymarket": []
-  },
-  {
-    "schema_version": 6,
     "name": "What price will gold close at in 2025?",
     "type": "categorical",
     "opinion_market_id": 62,
@@ -4162,22 +4084,6 @@
     "polymarket_event_endDate": "2026-03-31T00:00:00Z",
     "pairs": [
       {
-        "candidate": "December 15, 2025",
-        "opinion": {
-          "market_id": 2256,
-          "yes_token_id": "67310166428871557934324939947779742743355592725102289390146903979892318490420",
-          "no_token_id": "47731572978275142880534468109995668678791640478046426592321878572734473193638"
-        },
-        "polymarket": {
-          "market_id": "698378",
-          "question": "US x Venezuela military engagement by December 15?",
-          "candidate": "December 15",
-          "yes_token_id": "112640497415274870048785609862289176635257764908997036834711143540471128740829",
-          "no_token_id": "28683673936942471863375110029357487330012659447245176311148849330237415517527",
-          "endDate": "2025-11-30T00:00:00Z"
-        }
-      },
-      {
         "candidate": "December 31, 2025",
         "opinion": {
           "market_id": 2257,
@@ -4213,164 +4119,12 @@
     "unmatched_opinion": [],
     "unmatched_polymarket": [
       {
-        "market_id": "588774",
-        "question": "US x Venezuela military engagement by September 30?",
-        "candidate": "September 30",
-        "yes_token_id": "53329189831440627636636868515802265592481089176874040640959387461713752964289",
-        "no_token_id": "109644478546819520264613227061774401294354783943566712879572955957395810682943",
-        "endDate": "2025-10-31T00:00:00Z"
-      },
-      {
-        "market_id": "579306",
-        "question": "US x Venezuela military engagement by October 31?",
-        "candidate": "October 31",
-        "yes_token_id": "52859417050735918868656908741603454505096049718734443404219679209972083783955",
-        "no_token_id": "108222495243539546187805552650942183230816478636830289122686938116258337681972",
-        "endDate": "2025-10-31T00:00:00Z"
-      },
-      {
-        "market_id": "621018",
-        "question": "US x Venezuela military engagement by November 30?",
-        "candidate": "November 30",
-        "yes_token_id": "52495530769657433426315073623394145992266323233191674488787593449327803900186",
-        "no_token_id": "52365552199401369443408259986324629171792690921627298943075194906042228248932",
-        "endDate": "2025-11-30T00:00:00Z"
-      },
-      {
-        "market_id": "683143",
-        "question": "US x Venezuela military engagement by November 21?",
-        "candidate": "November 21",
-        "yes_token_id": "48028974894513913236348112511769102284179549982046905323395226210691967849411",
-        "no_token_id": "27255297357178673363648283316992198392690201446058980693831592614039788269356",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "838619",
-        "question": "US x Venezuela military engagement by December 9?",
-        "candidate": "December 9",
-        "yes_token_id": "3198732639336970450395585452269280893409405751233807115789403488194536872165",
-        "no_token_id": "50223217555011321010715656747749453270232423389758049107391147966450788832208",
-        "endDate": "2025-12-05T00:00:00Z"
-      },
-      {
-        "market_id": "699279",
-        "question": "US x Venezuela military engagement by November 25?",
-        "candidate": "November 25",
-        "yes_token_id": "25156395810592679406299335185330088752128410951941747984435896373482634550133",
-        "no_token_id": "65211458917027888273893862905592455935200734497114975925886473076291784907544",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "699280",
-        "question": "US x Venezuela military engagement by November 26?",
-        "candidate": "November 26",
-        "yes_token_id": "88409474723097086171634456575282827461031147768807936509804999018536269870664",
-        "no_token_id": "53407866390932448251087749521009376753626432819886114243571871108007903366559",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "699281",
-        "question": "US x Venezuela military engagement by November 27?",
-        "candidate": "November 27",
-        "yes_token_id": "101738016649113823737903062206469832983831666935706169426042454208610978319881",
-        "no_token_id": "5378042249081817067419775681350829205597864359259607629131595244051796588561",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "699277",
-        "question": "US x Venezuela military engagement by November 23?",
-        "candidate": "November 23",
-        "yes_token_id": "40528359711552902403646300181718043957994718238715096223164420441050387410214",
-        "no_token_id": "87202767802511934479445547210691872711945190862801251822544306311537310982440",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "699278",
-        "question": "US x Venezuela military engagement by November 24?",
-        "candidate": "November 24",
-        "yes_token_id": "11351310511768859516347397148033597193948264655983842676727163675825775296341",
-        "no_token_id": "39243999818995085102456931193762265137179825594945496852352842875900854625024",
-        "endDate": "2025-11-21T00:00:00Z"
-      },
-      {
-        "market_id": "646560",
-        "question": "US x Venezuela military engagement by October 24?",
-        "candidate": "October 24",
-        "yes_token_id": "54590751116928711419464785593096344839095844078708474829537799349702449923772",
-        "no_token_id": "94836691681808262721568067870835060868484303198799462351558774703470635316897",
-        "endDate": "2025-10-31T00:00:00Z"
-      },
-      {
-        "market_id": "648825",
-        "question": "US x Venezuela military engagement by October 27?",
-        "candidate": "October 27",
-        "yes_token_id": "113180532346238994328554373849359935087263707841808890553611261728977344256430",
-        "no_token_id": "14710687302510691308159918038363189008317308459979813406689422486761673421487",
-        "endDate": "2025-10-31T00:00:00Z"
-      },
-      {
-        "market_id": "657094",
-        "question": "US x Venezuela military engagement by November 7?",
-        "candidate": "November 7",
-        "yes_token_id": "13205086573854330535203818427380306771316876770967103533416809201467545880071",
-        "no_token_id": "64151805251770565190463469514701359474329928295120196199524917594185142299902",
-        "endDate": "2025-11-07T00:00:00Z"
-      },
-      {
-        "market_id": "657338",
-        "question": "US x Venezuela military engagement by November 14?",
-        "candidate": "November 14",
-        "yes_token_id": "24460481003204866157780678686810016283606857621314939069020004864070527642554",
-        "no_token_id": "79301686648265326530204879336142128062211949805895403651018179312976691109117",
-        "endDate": "2025-11-14T00:00:00Z"
-      },
-      {
-        "market_id": "660123",
-        "question": "US x Venezuela military engagement by November 3?",
-        "candidate": "November 3",
-        "yes_token_id": "75857675081833949632011771017387644990098641809413370989693388758919206645639",
-        "no_token_id": "28947753342923129127450127908735992115715544680632694232293681300536831061775",
-        "endDate": "2025-11-03T00:00:00Z"
-      },
-      {
-        "market_id": "660124",
-        "question": "US x Venezuela military engagement by November 5?",
-        "candidate": "November 5",
-        "yes_token_id": "29951822736405309860542615893169940426357348287676321332726605545003676058441",
-        "no_token_id": "80148646659205609237142008868649847518304982141469383382038656373850212352636",
-        "endDate": "2025-11-05T00:00:00Z"
-      },
-      {
-        "market_id": "659149",
-        "question": "US x Venezuela military engagement by November 1?",
-        "candidate": "November 1",
-        "yes_token_id": "45871788643066339018954871395968122087985434110291596121896687033826413272254",
-        "no_token_id": "49557441589152348113348982592040226526865186832304881284612781715317279828483",
-        "endDate": "2025-11-07T00:00:00Z"
-      },
-      {
-        "market_id": "659150",
-        "question": "US x Venezuela military engagement by November 2?",
-        "candidate": "November 2",
-        "yes_token_id": "84959133440334211892380542042360535327698175242766543769144742222360107856970",
-        "no_token_id": "367582338962884939777177547943310444244250847494941352743101336769740812719",
-        "endDate": "2025-11-07T00:00:00Z"
-      },
-      {
         "market_id": "916438",
         "question": "US x Venezuela military engagement by January 15, 2026?",
         "candidate": "January 15, 2026",
         "yes_token_id": "23102146416485852439758793112909967183319639847646393071767359411448615747651",
         "no_token_id": "4182299088772200443833100336072978652292817467119079090314787040233456705100",
         "endDate": "2026-01-15T00:00:00Z"
-      },
-      {
-        "market_id": "798707",
-        "question": "US x Venezuela military engagement by December 5?",
-        "candidate": "December 5",
-        "yes_token_id": "99954643214991757188737281539559070124971630302223112065807565014578974762044",
-        "no_token_id": "89944925311678645415931457239818751133693327387281454864318378331689268421961",
-        "endDate": "2025-12-05T00:00:00Z"
       },
       {
         "market_id": "916439",
@@ -5598,22 +5352,6 @@
         "yes_token_id": "4884380485105080546145060575294783444660012815228084154623642731058023618547",
         "no_token_id": "32250848140613922430522418670332200172473675052576772302636530994492680843592",
         "endDate": "2025-12-31T12:00:00Z"
-      },
-      {
-        "market_id": "604501",
-        "question": "TikTok sale announced by October 31?",
-        "candidate": "October 31",
-        "yes_token_id": "13044863280611742894073419957686319513241714206415178417470449959779045168458",
-        "no_token_id": "87201807924707745181605831444289735936698026533751908902190029401695380439990",
-        "endDate": "2025-10-31T12:00:00Z"
-      },
-      {
-        "market_id": "657492",
-        "question": "TikTok sale announced by November 30?",
-        "candidate": "November 30",
-        "yes_token_id": "4974805391475657369995475477953661307968392754900737322079170016141120430110",
-        "no_token_id": "110651001151735896274062980713444720373104884509884230544462301782900722162559",
-        "endDate": "2025-11-30T12:00:00Z"
       }
     ]
   },
@@ -5706,14 +5444,6 @@
     "unmatched_opinion": [],
     "unmatched_polymarket": [
       {
-        "market_id": "663849",
-        "question": "Maduro out by November 30, 2025?",
-        "candidate": "November 30, 2025",
-        "yes_token_id": "35859390315656392060454073267547818364992234221835154301016271976231606921278",
-        "no_token_id": "59948720944868168454409742025537774908837758559179210512150624185040906477117",
-        "endDate": "2025-11-30T12:00:00Z"
-      },
-      {
         "market_id": "916440",
         "question": "Maduro out by January 31, 2026?",
         "candidate": "January 31, 2026",
@@ -5776,14 +5506,6 @@
     ],
     "unmatched_opinion": [],
     "unmatched_polymarket": [
-      {
-        "market_id": "663849",
-        "question": "Maduro out by November 30, 2025?",
-        "candidate": "November 30, 2025",
-        "yes_token_id": "35859390315656392060454073267547818364992234221835154301016271976231606921278",
-        "no_token_id": "59948720944868168454409742025537774908837758559179210512150624185040906477117",
-        "endDate": "2025-11-30T12:00:00Z"
-      },
       {
         "market_id": "916440",
         "question": "Maduro out by January 31, 2026?",
@@ -5944,68 +5666,6 @@
         "endDate": "2025-12-31T12:00:00Z"
       }
     ]
-  },
-  {
-    "schema_version": 6,
-    "name": "Boxing: Jake Paul vs. Anthony Joshua",
-    "type": "categorical",
-    "opinion_market_id": 165,
-    "polymarket_event_slug": "boxing-jake-paul-vs-anthony-joshua-third-option-included",
-    "polymarket_event_id": "85540",
-    "polymarket_event_title": "Boxing: Jake Paul vs. Anthony Joshua ",
-    "polymarket_event_endDate": "2025-12-19T00:00:00Z",
-    "pairs": [
-      {
-        "candidate": "Anthony Joshua",
-        "opinion": {
-          "market_id": 2547,
-          "yes_token_id": "47123376512357955074944788924661068667526739323141515908561182656616662781817",
-          "no_token_id": "75391060437717903164729306417626289032451260873062294404154414722002284741765"
-        },
-        "polymarket": {
-          "market_id": "691855",
-          "question": "Will Anthony Joshua win his boxing match against Jake Paul?",
-          "candidate": "Anthony Joshua",
-          "yes_token_id": "8905255563986183379392409294223280557483334036589244914102532805042363763189",
-          "no_token_id": "107273459432080724730675788537332903439032639184635148148128996645817909401444",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      },
-      {
-        "candidate": "Jake Paul",
-        "opinion": {
-          "market_id": 2546,
-          "yes_token_id": "112992676989062078340225584292952551316883255722322431902263417746805782802919",
-          "no_token_id": "32461632258668303400686031558706327373181579946771601415406989478569951367260"
-        },
-        "polymarket": {
-          "market_id": "691854",
-          "question": "Will Jake Paul win his boxing match against Anthony Joshua?",
-          "candidate": "Jake Paul",
-          "yes_token_id": "17186228930277269925710685008112720110989575576784224613930645093956299392660",
-          "no_token_id": "18968531329469578571862666959901223104217414264745388906323578340653627036279",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      },
-      {
-        "candidate": "Draw/Not Scored",
-        "opinion": {
-          "market_id": 2548,
-          "yes_token_id": "109700888226377072602333973753881277613989866309983366796525701295863474027743",
-          "no_token_id": "86560868070631332774212509994473071671544177887371629839114752517407269926280"
-        },
-        "polymarket": {
-          "market_id": "691856",
-          "question": "Will Jake Paul vs. Anthony Joshua have no official winner?",
-          "candidate": "Draw/Not Scored",
-          "yes_token_id": "105953956915150002522974165882693825582092111865946642103065245868242929489995",
-          "no_token_id": "45564989537666625345712673679525402717096208123026156293976313884501160337709",
-          "endDate": "2025-12-19T00:00:00Z"
-        }
-      }
-    ],
-    "unmatched_opinion": [],
-    "unmatched_polymarket": []
   },
   {
     "schema_version": 6,
@@ -6207,48 +5867,7 @@
       }
     ],
     "unmatched_opinion": [],
-    "unmatched_polymarket": [
-      {
-        "market_id": "561699",
-        "question": "Will Pump.fun perform an airdrop by July 18? ",
-        "candidate": "July 18",
-        "yes_token_id": "65608197540292369730706565823104369647418484707426319698850083358894302812849",
-        "no_token_id": "37218309103910000125660160462106635146821217784108993481792756430689309526086",
-        "endDate": "2025-07-18T00:00:00Z"
-      },
-      {
-        "market_id": "561700",
-        "question": "Will Pump.fun perform an airdrop by August 31? ",
-        "candidate": "August 31",
-        "yes_token_id": "114640268590406907962184605424775655383241156941956707940638133541507504445621",
-        "no_token_id": "45793311573274325829757016897017281836586103626500470387490494921613407268014",
-        "endDate": "2025-08-31T00:00:00Z"
-      },
-      {
-        "market_id": "567468",
-        "question": "Will Pump.fun perform an airdrop by September 30? ",
-        "candidate": "September 30",
-        "yes_token_id": "75112941187539526409972576368403311608275897139761290995412586232765409639234",
-        "no_token_id": "113218646663666792292676570964657964326558132706001794680600269251785538892935",
-        "endDate": "2025-09-30T00:00:00Z"
-      },
-      {
-        "market_id": "549617",
-        "question": "Will Pump.fun perform an airdrop by June 30? ",
-        "candidate": "June 30",
-        "yes_token_id": "114096480064841487203290093703117607690468018481845116323176914548002435186035",
-        "no_token_id": "39935063821726037310606795265113282924890330321756982209233099836916359221750",
-        "endDate": "2025-06-30T00:00:00Z"
-      },
-      {
-        "market_id": "549618",
-        "question": "Will Pump.fun perform an airdrop by July 31? ",
-        "candidate": "July 31",
-        "yes_token_id": "57960385336933035060536952821883163657331297098373651761775928216040869027710",
-        "no_token_id": "9822756624087001797967170305172891544163269257046442316750385616205996335772",
-        "endDate": "2025-07-31T00:00:00Z"
-      }
-    ]
+    "unmatched_polymarket": []
   },
   {
     "schema_version": 6,
@@ -6520,199 +6139,1588 @@
   },
   {
     "schema_version": 6,
-    "name": "Bitcoin above ... on December 18?(By 12:00 ET)",
+    "name": "Another 7.0 or above earthquake by...?",
     "type": "categorical",
-    "opinion_market_id": 176,
-    "polymarket_event_slug": "bitcoin-above-on-december-18",
-    "polymarket_event_id": "102587",
-    "polymarket_event_title": "Bitcoin above ___ on December 18?",
-    "polymarket_event_endDate": "2025-12-18T17:00:00Z",
+    "opinion_market_id": 187,
+    "polymarket_event_slug": "another-7pt0-or-above-earthquake-by-548",
+    "polymarket_event_id": "100146",
+    "polymarket_event_title": "Another 7.0 or above earthquake by...?",
+    "polymarket_event_endDate": "2025-12-31T00:00:00Z",
     "pairs": [
       {
-        "candidate": "82,000",
+        "candidate": "December 31, 2025",
         "opinion": {
-          "market_id": 2623,
-          "yes_token_id": "92497909103188385520355010270448444915688084371152094178801022728709265687756",
-          "no_token_id": "27690143216252173825727727452329196092150087132050733199489731216301585041966"
+          "market_id": 2700,
+          "yes_token_id": "1371090924054966687805194537809769158455166336304485267933950002186949126106",
+          "no_token_id": "87431916626313397049321607396414875535421918480863675442949735721814950374699"
         },
         "polymarket": {
-          "market_id": "914722",
-          "question": "Will the price of Bitcoin be above $82,000 on December 18?",
-          "candidate": "82,000",
-          "yes_token_id": "91172986978833252354096370466261397820790368424090561422684438150497980401358",
-          "no_token_id": "42493009269663731480633246115959304430119355535524836366990056882828784589185",
-          "endDate": "2025-12-18T17:00:00Z"
-        }
-      },
-      {
-        "candidate": "84,000",
-        "opinion": {
-          "market_id": 2624,
-          "yes_token_id": "25711832116633274603766907512695109754487702311272485312930734309829514717100",
-          "no_token_id": "43518290910810254141712464117414065896920012417768239135628186835797152987633"
-        },
-        "polymarket": {
-          "market_id": "914723",
-          "question": "Will the price of Bitcoin be above $84,000 on December 18?",
-          "candidate": "84,000",
-          "yes_token_id": "41026954501344323004451237583648180522486883326390303929572174948671901591939",
-          "no_token_id": "27047315129113191795841508922448867931870098931531398715938155530552830017395",
-          "endDate": "2025-12-18T17:00:00Z"
-        }
-      },
-      {
-        "candidate": "86,000",
-        "opinion": {
-          "market_id": 2625,
-          "yes_token_id": "90263339782847824325112576706711933741341028046934262188995922900676668094472",
-          "no_token_id": "56377706903891193906929126598752686402365809187089379125487184156599823453916"
-        },
-        "polymarket": {
-          "market_id": "914724",
-          "question": "Will the price of Bitcoin be above $86,000 on December 18?",
-          "candidate": "86,000",
-          "yes_token_id": "75582083438667380409171191931553569498851546731580784365377213038703851159420",
-          "no_token_id": "80931511045836597972253059444353321392026522653323088885817706437796925243647",
-          "endDate": "2025-12-18T17:00:00Z"
-        }
-      },
-      {
-        "candidate": "88,000",
-        "opinion": {
-          "market_id": 2626,
-          "yes_token_id": "105617298405362002239034121387766641402250646379954214077722933810448698864364",
-          "no_token_id": "95820517627704692147724148302450708070411811260551143783772340746331438597372"
-        },
-        "polymarket": {
-          "market_id": "914725",
-          "question": "Will the price of Bitcoin be above $88,000 on December 18?",
-          "candidate": "88,000",
-          "yes_token_id": "28640026300209529534495864550453905906956051955417548879405239626628220259810",
-          "no_token_id": "31475568513882454976159452541365077678322703358468294411548510091647971265418",
-          "endDate": "2025-12-18T17:00:00Z"
-        }
-      },
-      {
-        "candidate": "90,000",
-        "opinion": {
-          "market_id": 2627,
-          "yes_token_id": "60347201683789917462159499197269826322682616101836344135417688155100900662730",
-          "no_token_id": "107876627897879326436852971885301388740396981275911799178721176982845176760706"
-        },
-        "polymarket": {
-          "market_id": "914726",
-          "question": "Will the price of Bitcoin be above $90,000 on December 18?",
-          "candidate": "90,000",
-          "yes_token_id": "86569282320288982419350216577153539224636812811015213521508407297714659583553",
-          "no_token_id": "87536754764358256086735682940803045291685768605892810283784118393712582859162",
-          "endDate": "2025-12-18T17:00:00Z"
-        }
-      },
-      {
-        "candidate": "92,000",
-        "opinion": {
-          "market_id": 2628,
-          "yes_token_id": "91351282545284068131698022033083782263605470361893755364377379409033515575561",
-          "no_token_id": "79071564302172994064297952069859387126168246372542741610460970725758389113583"
-        },
-        "polymarket": {
-          "market_id": "914727",
-          "question": "Will the price of Bitcoin be above $92,000 on December 18?",
-          "candidate": "92,000",
-          "yes_token_id": "79881824748079727140682532212609900630906400317095044195724775278769724800023",
-          "no_token_id": "79333874354356164503141722641839450812688169654327228535844717776610695300162",
-          "endDate": "2025-12-18T17:00:00Z"
+          "market_id": "896323",
+          "question": "Another 7.0 or above earthquake by December 31?",
+          "candidate": "December 31, 2025",
+          "yes_token_id": "107463795044225144256890654722265377013120009860543781140812527726244520612425",
+          "no_token_id": "66040514085009954615606665392387712884412995381375328531756222492293876135607",
+          "endDate": "2025-12-31T00:00:00Z"
         }
       }
     ],
     "unmatched_opinion": [],
     "unmatched_polymarket": [
       {
-        "market_id": "914721",
-        "question": "Will the price of Bitcoin be above $80,000 on December 18?",
-        "candidate": "80,000",
-        "yes_token_id": "47901885306540205279904957202924675392738020958258352387524528557707400206793",
-        "no_token_id": "18934247006591445341012741583491781445019155818259799155220908652344423496421",
-        "endDate": "2025-12-18T17:00:00Z"
-      },
-      {
-        "market_id": "914728",
-        "question": "Will the price of Bitcoin be above $94,000 on December 18?",
-        "candidate": "94,000",
-        "yes_token_id": "22416235310651983905018114674494546794208156905660576301686748159649866150379",
-        "no_token_id": "106550188704568994415736307933052591645989814633593122029685975274991829856842",
-        "endDate": "2025-12-18T17:00:00Z"
-      },
-      {
-        "market_id": "914729",
-        "question": "Will the price of Bitcoin be above $96,000 on December 18?",
-        "candidate": "96,000",
-        "yes_token_id": "28757483649180486155771713515781232653299704056642283760745161706745128157222",
-        "no_token_id": "24840402772319943232197410487042734021687270294395100135500194401343739378603",
-        "endDate": "2025-12-18T17:00:00Z"
-      },
-      {
-        "market_id": "914730",
-        "question": "Will the price of Bitcoin be above $98,000 on December 18?",
-        "candidate": "98,000",
-        "yes_token_id": "51023962518000637563400553022806053078404827026074767334993192211091395362942",
-        "no_token_id": "17553225057591281591848809982545866679734133436264405066011968615539430901386",
-        "endDate": "2025-12-18T17:00:00Z"
-      },
-      {
-        "market_id": "914731",
-        "question": "Will the price of Bitcoin be above $100,000 on December 18?",
-        "candidate": "100,000",
-        "yes_token_id": "92133255861696771735011997730519230608560420710348238013722235069076620038643",
-        "no_token_id": "112886778401434919965358385210505972710502962793723242264515803040822417880915",
-        "endDate": "2025-12-18T17:00:00Z"
+        "market_id": "896322",
+        "question": "Another 7.0 or above earthquake by December 15?",
+        "candidate": "December 15, 2025",
+        "yes_token_id": "12054220549934240380996289749819564827796379784776324487430237945504320674494",
+        "no_token_id": "34078904205478082895632781039716600361969426502154941918880476764132576321781",
+        "endDate": "2025-12-31T00:00:00Z"
       }
     ]
   },
   {
     "schema_version": 6,
-    "name": "Bitcoin Up or Down on December 18?(By 12:00 ET)",
-    "type": "binary",
-    "opinion": {
-      "market_id": 2622,
-      "yes_token_id": "105530768682533777645788927889122653418880257816854052861948963797267288621089",
-      "no_token_id": "45637061170924617086864470890557813439953299281473918704290091730360686474891"
-    },
-    "polymarket": {
-      "slug": "bitcoin-up-or-down-on-december-18",
-      "question": "Bitcoin Up or Down on December 18?",
-      "outcomes": [
-        "Up",
-        "Down"
-      ],
-      "clob_token_ids": [
-        "7701020491785318757765920688072866352688582680495429955789290076120977529524",
-        "47408617896371628407796099178071232797385738967605391720432482914626721555141"
-      ],
-      "endDate": "2025-12-18T17:00:00Z"
-    }
+    "name": "Thailand x Cambodia ceasefire by...?",
+    "type": "categorical",
+    "opinion_market_id": 188,
+    "polymarket_event_slug": "thailand-x-cambodia-ceasefire-by-december-15",
+    "polymarket_event_id": "100360",
+    "polymarket_event_title": "Thailand x Cambodia ceasefire by...?",
+    "polymarket_event_endDate": "2025-12-31T00:00:00Z",
+    "pairs": [],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": []
   },
   {
     "schema_version": 6,
-    "name": "TikTok sale announced by Dec 31?",
+    "name": "Will Tempo launch a token by ... ?",
+    "type": "categorical",
+    "opinion_market_id": 192,
+    "polymarket_event_slug": "will-tempo-launch-a-token-by",
+    "polymarket_event_id": "90366",
+    "polymarket_event_title": "Will Tempo launch a token by ___ ?",
+    "polymarket_event_endDate": "2027-01-01T05:00:00Z",
+    "pairs": [
+      {
+        "candidate": "March 31, 2026",
+        "opinion": {
+          "market_id": 2994,
+          "yes_token_id": "13383701888787539140130119020982985492804052467854289947031996864351681409967",
+          "no_token_id": "17958343401580878436865536495943485799344672129503972274042135070821626284677"
+        },
+        "polymarket": {
+          "market_id": "704135",
+          "question": "Will Tempo launch a token by March 31 2026?",
+          "candidate": "March 31, 2026",
+          "yes_token_id": "6204130245698709038602384510324142540785784429432594062343746325386552136262",
+          "no_token_id": "91625710068139030470091356257108694429518811748036933313592459587565266248832",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "June 30, 2026",
+        "opinion": {
+          "market_id": 2995,
+          "yes_token_id": "31630568987351762956612927216710996415956002644130493209984506688488962961296",
+          "no_token_id": "21395075297536821431668397956386509968245270617503062740351859141610333628990"
+        },
+        "polymarket": {
+          "market_id": "704136",
+          "question": "Will Tempo launch a token by June 30 2026?",
+          "candidate": "June 30, 2026",
+          "yes_token_id": "33069578092013388167178789652438366143603080812585722308466176777583824511087",
+          "no_token_id": "37064755131983123297659690046577316031263353455943638968098280164086184274144",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "September 30, 2026",
+        "opinion": {
+          "market_id": 2996,
+          "yes_token_id": "75192569508047345193433302784411853143853590654275860009127757165010980963415",
+          "no_token_id": "99275758990759055548719302345033642426971723909069033428285922177443693692203"
+        },
+        "polymarket": {
+          "market_id": "704137",
+          "question": "Will Tempo launch a token by September 30 2026?",
+          "candidate": "September 30, 2026",
+          "yes_token_id": "55303082688257227504960986137885458925058377387780373791667944304751136211598",
+          "no_token_id": "50530417345165442609916930197397865743299627138159750824280752185422083138021",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "December 31, 2026",
+        "opinion": {
+          "market_id": 2997,
+          "yes_token_id": "12717085244332265130889250306073931611342906774532597961056774505279900953884",
+          "no_token_id": "94922528895611497720549470806617297719730286364826690342461950477965589545541"
+        },
+        "polymarket": {
+          "market_id": "704138",
+          "question": "Will Tempo launch a token by December 31 2026?",
+          "candidate": "December 31, 2026",
+          "yes_token_id": "334216271239873544450823244049954848669568835868754867477781292290956396325",
+          "no_token_id": "41689961988055002292110125674485780171977239468690782163284399512117458505974",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "704134",
+        "question": "Will Tempo launch a token by December 31 2025?",
+        "candidate": "December 31, 2025",
+        "yes_token_id": "102421987070113410297362977129605902625231831093334542945159103694937505293902",
+        "no_token_id": "59069641037436375409278566291288741013994210843764477282137489262066877920050",
+        "endDate": "2027-01-01T05:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Which CEOs will be out before 2027?",
+    "type": "categorical",
+    "opinion_market_id": 193,
+    "polymarket_event_slug": "which-ceos-will-be-out-before-2027",
+    "polymarket_event_id": "83771",
+    "polymarket_event_title": "Which CEOs will be out before 2027?",
+    "polymarket_event_endDate": "2026-12-31T00:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Tim Cook - Apple",
+        "opinion": {
+          "market_id": 2998,
+          "yes_token_id": "66632965122079078968682389728469520180922910146294725526377082052660199151982",
+          "no_token_id": "22685291342792421289483490443378961162780793359445473883452663656588372179090"
+        },
+        "polymarket": {
+          "market_id": "687555",
+          "question": "Tim Cook out as Apple CEO before 2027?",
+          "candidate": "Tim Cook - Apple",
+          "yes_token_id": "61206972151251876144604293020080604222328714471900617903057651992345445705297",
+          "no_token_id": "93668226216131104283354032163235291342189362223075298572611739609833832082351",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Dan Clancy - Twitch",
+        "opinion": {
+          "market_id": 2999,
+          "yes_token_id": "19267770364037413021467608224673491644097277061756076947683443003589648284200",
+          "no_token_id": "31062680853679911407263813206503476007887578164125721292735598846868335598297"
+        },
+        "polymarket": {
+          "market_id": "687556",
+          "question": "Dan Clancy out as Twitch CEO before 2027?",
+          "candidate": "Dan Clancy - Twitch",
+          "yes_token_id": "61910707904281996505161127224246612383514863738836979998312851822585274706349",
+          "no_token_id": "16196962290405878888666658864308609484308422667663114818829644282004091839476",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Brian Armstrong - Coinbase",
+        "opinion": {
+          "market_id": 3000,
+          "yes_token_id": "31207179556232194661965752059584121771317193145859276070789970484318836139440",
+          "no_token_id": "106527095983272502844904103422535605341705908853159782302811184630488872520168"
+        },
+        "polymarket": {
+          "market_id": "687558",
+          "question": "Brian Armstrong out as Coinbase CEO before 2027?",
+          "candidate": "Brian Armstrong - Coinbase",
+          "yes_token_id": "83222070317388442532274647342051196715216053104933549999785501358606627621161",
+          "no_token_id": "43117600804810035470296813919449329039645615634425191119353709740770088758457",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Sam Altman - OpenAI",
+        "opinion": {
+          "market_id": 3002,
+          "yes_token_id": "15524284528954882996422114918752272773388587244244056669458062662864940861459",
+          "no_token_id": "82132264800578277346090628179396996351512785037078073538615733662600111361295"
+        },
+        "polymarket": {
+          "market_id": "687559",
+          "question": "Sam Altman out as OpenAI CEO before 2027?",
+          "candidate": "Sam Altman - OpenAI",
+          "yes_token_id": "57067719256616857137938990326093903170053906691638706259598156599840250775346",
+          "no_token_id": "47319279464284208645195372227401992250674667232069486692683716069530804439128",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Andy Jassy - Amazon",
+        "opinion": {
+          "market_id": 3001,
+          "yes_token_id": "39207195247279487365296194330200699465204078538071715616077828089793737287987",
+          "no_token_id": "50624952403090661476121957403362664947143260390511450605551854445301901903218"
+        },
+        "polymarket": {
+          "market_id": "687557",
+          "question": "Andy Jassy out as Amazon CEO before 2027?",
+          "candidate": "Andy Jassy - Amazon",
+          "yes_token_id": "88916808664046224326757445357286864629666742099689024587137248520524930555005",
+          "no_token_id": "33765827603189435874489860244475902050655017860447392263494215869340987516142",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Sundar Pichai - Google",
+        "opinion": {
+          "market_id": 3003,
+          "yes_token_id": "22173548100528144194590145043885620760499988912314640603371689958382089374232",
+          "no_token_id": "36994239431960568668332854833052780598458027742626901930098020763133233069644"
+        },
+        "polymarket": {
+          "market_id": "687554",
+          "question": "Sundar Pichai out as Google CEO before 2027?",
+          "candidate": "Sundar Pichai - Google",
+          "yes_token_id": "3187619774103815401989104105090562384823092055891401921060542494677766269804",
+          "no_token_id": "7947521479815490556018713500318743936553537976363237648691031200579833825025",
+          "endDate": "2026-12-31T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": []
+  },
+  {
+    "schema_version": 6,
+    "name": "How much revenue will the U.S. raise from tariffs in 2025?",
+    "type": "categorical",
+    "opinion_market_id": 196,
+    "polymarket_event_slug": "how-much-revenue-will-the-us-raise-from-tariffs-in-2025",
+    "polymarket_event_id": "22862",
+    "polymarket_event_title": "How much revenue will the U.S. raise from tariffs in 2025?",
+    "polymarket_event_endDate": "2026-02-28T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "<$100b",
+        "opinion": {
+          "market_id": 3017,
+          "yes_token_id": "115580781933473891667481628972108047648885700764395115414102413900997673022935",
+          "no_token_id": "39864616306090558492347240346196144487731033049240731983534766717832576722417"
+        },
+        "polymarket": {
+          "market_id": "537484",
+          "question": "Will the U.S. collect less than $100b in revenue in 2025?",
+          "candidate": "<$100b",
+          "yes_token_id": "82901799715930045311809212542225092826839455972178920747166234033810084508110",
+          "no_token_id": "2067891916326150127826753884863730268931932594834881748788499812590988545417",
+          "endDate": "2026-02-28T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "$100–200b",
+        "opinion": {
+          "market_id": 3018,
+          "yes_token_id": "85293994958693901627471869710818006761190852351926080109640867360000027470346",
+          "no_token_id": "90314451196502632616535534348493627681650942698360246749046780875010922129196"
+        },
+        "polymarket": {
+          "market_id": "537485",
+          "question": "Will the U.S. collect between $100b and $200b in revenue in 2025?",
+          "candidate": "$100–200b",
+          "yes_token_id": "56943889421369223313864561268386407584816988844238380390936659020238520433523",
+          "no_token_id": "29795694034265723490033787182308468787841029434655005675103532957362215624118",
+          "endDate": "2026-02-28T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "$200–500b",
+        "opinion": {
+          "market_id": 3019,
+          "yes_token_id": "35513231639220004155539972249688601367978586874260018267891931866327496090530",
+          "no_token_id": "41474915856048334352183715970634308525944998923613111859944785870062124469780"
+        },
+        "polymarket": {
+          "market_id": "537486",
+          "question": "Will the U.S. collect between $200b and $500b in revenue in 2025?",
+          "candidate": "$200–500b",
+          "yes_token_id": "19180751334892649957685662514970856594118361572000181281162861811532650604260",
+          "no_token_id": "50221315964000194764695024582522009520159992363520263771661265416131198909217",
+          "endDate": "2026-02-28T12:00:00Z"
+        }
+      },
+      {
+        "candidate": "$500b+",
+        "opinion": {
+          "market_id": 3020,
+          "yes_token_id": "82074865043724030638303074410782111175374273694337200248804195967226449281208",
+          "no_token_id": "1190595278742215234655782595515572935983430544832653499883275764442224342431"
+        },
+        "polymarket": {
+          "market_id": "537487",
+          "question": "Will the U.S. collect between $500b and $1t in revenue in 2025?",
+          "candidate": "$500b–1t",
+          "yes_token_id": "14642427631762357507939608294887050551300827907746951519205602696553287464979",
+          "no_token_id": "107108677406570769174644732556082858255108204503861334566787299375848455720534",
+          "endDate": "2026-02-28T12:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "537488",
+        "question": "Will the U.S. collect between $1t and $2t in revenue in 2025?",
+        "candidate": "$1–2t",
+        "yes_token_id": "55230883696690777055093667580992529716053651794118931424366317904049903435707",
+        "no_token_id": "36160875054349860297241932396729439694013343352900043316198670668357407504633",
+        "endDate": "2026-02-28T12:00:00Z"
+      },
+      {
+        "market_id": "537489",
+        "question": "Will the U.S. collect more than $2t in revenue in 2025?",
+        "candidate": "$2t+",
+        "yes_token_id": "18819282518983024340055565234868223423589909363920183730949900798929318964595",
+        "no_token_id": "6072714739533147140307902291188757966105333930587602693574106708760777759738",
+        "endDate": "2026-02-28T12:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Tesla launches unsupervised full self driving (FSD) by...?",
+    "type": "categorical",
+    "opinion_market_id": 198,
+    "polymarket_event_slug": "tesla-launches-unsupervised-full-self-driving-fsd-by",
+    "polymarket_event_id": "25483",
+    "polymarket_event_title": "Tesla launches unsupervised full self driving (FSD) by...?",
+    "polymarket_event_endDate": "2025-12-31T12:00:00Z",
+    "pairs": [
+      {
+        "candidate": "March 31, 2026",
+        "opinion": {
+          "market_id": 3028,
+          "yes_token_id": "42775512786737624035356919131000594910450436840502841216641108330177509188500",
+          "no_token_id": "62442147543838431015363545858792112648809702136395416785726337990899395197187"
+        },
+        "polymarket": {
+          "market_id": "940839",
+          "question": "Tesla launches unsupervised full self driving (FSD) by March 31?",
+          "candidate": "March 31, 2026",
+          "yes_token_id": "85042366578071160010362487741310557211229839063488327055582358252286056286425",
+          "no_token_id": "36013802262262953346042462938635179630976030814708782651391323574982976068557",
+          "endDate": "2026-03-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "June 30, 2026",
+        "opinion": {
+          "market_id": 3029,
+          "yes_token_id": "17893743605751990972476886646950993194134129002122279084592338091400481634516",
+          "no_token_id": "63490749654450106024704110595021227982048884636361550722824212826912841842664"
+        },
+        "polymarket": {
+          "market_id": "565930",
+          "question": "Tesla launches unsupervised full self driving (FSD) by June 30?",
+          "candidate": "June 30, 2026",
+          "yes_token_id": "107281002012721876026695277673649500471455902224367011098589595335909329157141",
+          "no_token_id": "109093397784326761075153288668799676062883343553988702537365993605828533802123",
+          "endDate": "2026-06-30T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": []
+  },
+  {
+    "schema_version": 6,
+    "name": "Will Paradex launch a token by ...?",
+    "type": "categorical",
+    "opinion_market_id": 175,
+    "polymarket_event_slug": "will-paradex-launch-a-token-by",
+    "polymarket_event_id": "95091",
+    "polymarket_event_title": "Will Paradex launch a token by ___?",
+    "polymarket_event_endDate": "2027-01-01T05:00:00Z",
+    "pairs": [
+      {
+        "candidate": "February 28, 2026",
+        "opinion": {
+          "market_id": 2607,
+          "yes_token_id": "18568430249427019270202984814264355629680365141486647833183735458121155587578",
+          "no_token_id": "102176097149550958526874937355121726987634345361642536993334849398604218528098"
+        },
+        "polymarket": {
+          "market_id": "789405",
+          "question": "Will Paradex launch a token by February 28, 2026?",
+          "candidate": "February 28, 2026",
+          "yes_token_id": "46367383949576950213419655577262094082396220296542099599856234058963198422649",
+          "no_token_id": "52369665428389652855291507646129098858582584303241781581141255098525409318893",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "March 31, 2026",
+        "opinion": {
+          "market_id": 2608,
+          "yes_token_id": "1763828268016259264970804589176396067896880536926288352897911193933510904452",
+          "no_token_id": "115245837850662144871453626940907600918924793397105180851679815708933499199575"
+        },
+        "polymarket": {
+          "market_id": "788171",
+          "question": "Will Paradex launch a token by March 31 2026?",
+          "candidate": "March 31, 2026",
+          "yes_token_id": "79853193972177640019527025665261180603489683409275413692986694840026594909109",
+          "no_token_id": "25954631204618778965293836854414163753718663062468929991718011199015128413174",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "June 30, 2026",
+        "opinion": {
+          "market_id": 2609,
+          "yes_token_id": "13766909382150257467446436655331969926914504546602223743763739138754304589478",
+          "no_token_id": "63395900141993403526958685664529082221506856445119714541728475531415538149222"
+        },
+        "polymarket": {
+          "market_id": "788172",
+          "question": "Will Paradex launch a token by June 30 2026?",
+          "candidate": "June 30, 2026",
+          "yes_token_id": "115448636733212327877712773177366708632013652120878094542589509302328289967352",
+          "no_token_id": "79750415576854749055754478535368243919485829508007392836129901093449657890450",
+          "endDate": "2027-01-01T05:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "789439",
+        "question": "Will Paradex launch a token by April 30 2026?",
+        "candidate": "April 30, 2026",
+        "yes_token_id": "48470325109757381657813595662670456518483823990909002241860142694449096665070",
+        "no_token_id": "109432408057895617086000711412461344471962623259697000513525155396800958813540",
+        "endDate": "2027-01-01T05:00:00Z"
+      },
+      {
+        "market_id": "789484",
+        "question": "Will Paradex launch a token by May 31, 2026?",
+        "candidate": "May 31, 2026",
+        "yes_token_id": "13152880374432079248896014226570958468235032362144629794772351819435139556599",
+        "no_token_id": "13220134559734639818478261851007442123142049722811243791035042101691477430929",
+        "endDate": "2027-01-01T05:00:00Z"
+      },
+      {
+        "market_id": "788170",
+        "question": "Will Paradex launch a token by December 31 2025?",
+        "candidate": "December 31, 2025",
+        "yes_token_id": "32297942578723169279180117698221629084320792684481160496134142656558722584057",
+        "no_token_id": "17219323275478856568788942930399138457732626885923207501823020528261680979419",
+        "endDate": "2027-01-01T05:00:00Z"
+      },
+      {
+        "market_id": "788174",
+        "question": "Will Paradex launch a token by December 31 2026?",
+        "candidate": "December 31, 2026",
+        "yes_token_id": "56927953936727285807683942477324904737744683390592359979099646517510362083202",
+        "no_token_id": "99906126871933079411601626812214794097464906440271135755819565315960020954368",
+        "endDate": "2027-01-01T05:00:00Z"
+      },
+      {
+        "market_id": "788173",
+        "question": "Will Paradex launch a token by September 30 2026?",
+        "candidate": "September 30, 2026",
+        "yes_token_id": "114717871444935225751943275932041790059252311975830873326892215963156635494274",
+        "no_token_id": "76493228627490700206373511922400617639567467598442792529142258643733961174738",
+        "endDate": "2027-01-01T05:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Okbet Arena AI trading competition winner?",
+    "type": "categorical",
+    "opinion_market_id": 200,
+    "polymarket_event_slug": "okbet-arena-ai-trading-competition-winner",
+    "polymarket_event_id": "112202",
+    "polymarket_event_title": "Okbet Arena AI trading competition winner?",
+    "polymarket_event_endDate": "2026-02-01T05:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Claude",
+        "opinion": {
+          "market_id": 3041,
+          "yes_token_id": "99353051721477177522248927887685280403582727125089473449457683027956209420233",
+          "no_token_id": "498173313833333658408014606670126702148839247487238581369918122354744805527"
+        },
+        "polymarket": {
+          "market_id": "973535",
+          "question": "Will Claude win the okbet trading competition?",
+          "candidate": "Claude",
+          "yes_token_id": "106329057334407501859735032786066096569266185030008459015159028644092225567196",
+          "no_token_id": "18189179419912691098989480774120727091805163278376696177328933368622707752338",
+          "endDate": "2026-02-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "Grok",
+        "opinion": {
+          "market_id": 3040,
+          "yes_token_id": "84050668144771462745725102411563575263355837446216186466529103827844959435083",
+          "no_token_id": "24558569876224631606533686112546365365987311573982132420492104862671596454999"
+        },
+        "polymarket": {
+          "market_id": "973536",
+          "question": "Will Grok win the okbet trading competition?",
+          "candidate": "Grok",
+          "yes_token_id": "39886202509845847450780217750371195435571126298393300004102278086720355553177",
+          "no_token_id": "2433757683875464332617159379328532785111665012978456317105258035709420301799",
+          "endDate": "2026-02-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "GPT",
+        "opinion": {
+          "market_id": 3042,
+          "yes_token_id": "42319541515664828250446614637825290909906598838156266529607327427802190443014",
+          "no_token_id": "68830162966383483707530436468772993129325665492635111262195370209698824893026"
+        },
+        "polymarket": {
+          "market_id": "973537",
+          "question": "Will GPT win the okbet trading competition?",
+          "candidate": "GPT",
+          "yes_token_id": "110248206818771621960610048506218718568894942540961859256315141303957005242668",
+          "no_token_id": "106521029698189362881471827232071224201652443424314409032725750947466172858304",
+          "endDate": "2026-02-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "DeepSeek",
+        "opinion": {
+          "market_id": 3043,
+          "yes_token_id": "45588982941816461887283742884334221333930523611571629666106584018853318729607",
+          "no_token_id": "74388317922554303785687591284679844487054920826515233811898442618252614663148"
+        },
+        "polymarket": {
+          "market_id": "973539",
+          "question": "Will DeepSeek win the okbet trading competition?",
+          "candidate": "DeepSeek",
+          "yes_token_id": "64856888229718707861218776315061527173134616018806437452410168670288599210725",
+          "no_token_id": "86802100967066683046323015462763409462493598805960228237377171641488880355633",
+          "endDate": "2026-02-01T05:00:00Z"
+        }
+      },
+      {
+        "candidate": "Gemini",
+        "opinion": {
+          "market_id": 3044,
+          "yes_token_id": "23531842956787102371605943484234618811255982077472632998524817288703118131297",
+          "no_token_id": "88465730185411082082239142264490271451192709305786100998502230745675173003633"
+        },
+        "polymarket": {
+          "market_id": "973538",
+          "question": "Will Gemini win the okbet trading competition?",
+          "candidate": "Gemini",
+          "yes_token_id": "24999375433245872086319546902709515703493848233540123711149119983970196216894",
+          "no_token_id": "86024077639468456829451800008658794387007286073123077471959615828554922959385",
+          "endDate": "2026-02-01T05:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "973540",
+        "question": "Will another AI win the okbet trading competition?",
+        "candidate": "Other",
+        "yes_token_id": "9102609039255672379134702525368554131684617690467778940312538100969622131499",
+        "no_token_id": "105863461906677098561016363127970700281902365460545498692217360811667526064304",
+        "endDate": "2026-02-01T05:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Oscars 2026: Best Cinematography Winner",
+    "type": "categorical",
+    "opinion_market_id": 210,
+    "polymarket_event_slug": "oscars-2026-best-cinematography-winner",
+    "polymarket_event_id": "50390",
+    "polymarket_event_title": "Oscars 2026: Best Cinematography Winner",
+    "polymarket_event_endDate": "2026-03-15T00:00:00Z",
+    "pairs": [
+      {
+        "candidate": "One Battle After Another",
+        "opinion": {
+          "market_id": 3161,
+          "yes_token_id": "41989692533215817724246421383013757456108310037886000791794605966704473073239",
+          "no_token_id": "57110671112637615681183062303533756889739532870290665251874659206720385890536"
+        },
+        "polymarket": {
+          "market_id": "614805",
+          "question": "Will One Battle After Another win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "One Battle After Another",
+          "yes_token_id": "62441115805494559525017190363019355430536480841874148392512846427756976125489",
+          "no_token_id": "102748301085702383063938000129249534393435822349644450614406257483208522177828",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Sinners",
+        "opinion": {
+          "market_id": 3162,
+          "yes_token_id": "73628395073490911128467691468822460545024104027714302745334690941902770842300",
+          "no_token_id": "27800423150729886263105054094239335723111031988118727923907796263815385050418"
+        },
+        "polymarket": {
+          "market_id": "614807",
+          "question": "Will Sinners win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Sinners",
+          "yes_token_id": "58693397426195255388613281030379421883802506159488311628824659570122374084070",
+          "no_token_id": "32732152210155458783728849737725192406153254815011218887256354427287062398458",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Frankenstein",
+        "opinion": {
+          "market_id": 3164,
+          "yes_token_id": "100263611857406799507486492138791708469021570268821708342862407656315565467009",
+          "no_token_id": "32299237352025555732491371238233538659944261513542859500851051217122597375553"
+        },
+        "polymarket": {
+          "market_id": "614810",
+          "question": "Will Frankenstein win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Frankenstein",
+          "yes_token_id": "31117275708972981249574775128553095176948627016190005313480864727005856513145",
+          "no_token_id": "8591505279412405058261096598415000869045136117426058744619574511274092039420",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Train Dreams",
+        "opinion": {
+          "market_id": 3163,
+          "yes_token_id": "88336067347195853173637484455809966290960199220096053818084012105273064665247",
+          "no_token_id": "9005394338599128964636553593773716029861893596611889890098224993106468178677"
+        },
+        "polymarket": {
+          "market_id": "614815",
+          "question": "Will Train Dreams win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Train Dreams",
+          "yes_token_id": "88687153401192661454813240429038979383275980323352664483445538248662495332584",
+          "no_token_id": "56857647151865489560600369520899952261458202747351451242401645173779830565677",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Marty Supreme",
+        "opinion": {
+          "market_id": 3165,
+          "yes_token_id": "11155930724291697555347317861212982065764591335827904731347044750892496942054",
+          "no_token_id": "79828059354905173977335380358515282523086959654283814433745570272245016238261"
+        },
+        "polymarket": {
+          "market_id": "614811",
+          "question": "Will Marty Supreme win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Marty Supreme",
+          "yes_token_id": "36031453105308488709934763053567864933523259808370876270679961357552950794714",
+          "no_token_id": "100252951645439451581776687768578604268501429361189956661485053692889049796493",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "F1: The Movie",
+        "opinion": {
+          "market_id": 3167,
+          "yes_token_id": "21367498355050970057716091451323854837766044017012852333623202735164508992147",
+          "no_token_id": "28892952678811822726586347479709619240380440960413779585923409597953000736486"
+        },
+        "polymarket": {
+          "market_id": "614809",
+          "question": "Will F1: The Movie win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "F1: The Movie",
+          "yes_token_id": "31408499196747972484954020360638445842985907517912543998434086755451767024016",
+          "no_token_id": "22886932588639068119008138721332581905958471215198363416251851849672930476139",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Hamnet",
+        "opinion": {
+          "market_id": 3166,
+          "yes_token_id": "56498610688430319278907003225884175378033877323625636397156023634518153511942",
+          "no_token_id": "56149668671619506907362249343507145699446080757073643518314179060524806130298"
+        },
+        "polymarket": {
+          "market_id": "614806",
+          "question": "Will Hamnet win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Hamnet",
+          "yes_token_id": "108203096973522557187956011208704058932669331103920309954986302296600584262828",
+          "no_token_id": "53190383423868543699383951097046561306916624081222406202971211130942892057428",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Wicked: For Good",
+        "opinion": {
+          "market_id": 3168,
+          "yes_token_id": "25660408181005860679111342490418819942631878029379273139119476014114711111653",
+          "no_token_id": "60257503033752916246592924922498480624033445618149646645262072887140328454830"
+        },
+        "polymarket": {
+          "market_id": "614816",
+          "question": "Will Wicked: For Good win Best Cinematography at the 98th Academy Awards?",
+          "candidate": "Wicked: For Good",
+          "yes_token_id": "53927005506278111195869149287111244291558070953613663598396740001811514869608",
+          "no_token_id": "45134562818190977815380207718544498540587917686499337747262235358764776413179",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "614808",
+        "question": "Will 28 Years Later win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "28 Years Later",
+        "yes_token_id": "84395032980127274180839477928925300686402306231590070753374651329981967053730",
+        "no_token_id": "48600851263986659834949590960745010808568304563117291965104082654894710562922",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614812",
+        "question": "Will Avatar: Fire and Ash win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Avatar: Fire and Ash",
+        "yes_token_id": "3101059484005111255071263763276921746470830232725163114423230117786470641240",
+        "no_token_id": "58417137181837400780189733511830077468940689348171736467423285185348089792355",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614814",
+        "question": "Will Nouvelle Vague win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Nouvelle Vague",
+        "yes_token_id": "69410471886303361111206611962027998383370587313767980227389226925449233121462",
+        "no_token_id": "11357887007628729948935413198288880179161939070713613777762721103914529052384",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614818",
+        "question": "Will Anemone win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Anemone",
+        "yes_token_id": "26601251939747256429544501380241474743570471757312555811854376060281812707662",
+        "no_token_id": "11408040175546646836685247153261510455884637740137551065407140589508109391896",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614820",
+        "question": "Will any other film win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Other",
+        "yes_token_id": "88535981588112101446697552783324004490362119241259701145726650540888305830530",
+        "no_token_id": "7292901349828300898542691894578833849386897675434327094560802836125449175803",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614813",
+        "question": "Will Bugonia win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Bugonia",
+        "yes_token_id": "115283156563756276752236936154863978501168695950023164611230619210717223695680",
+        "no_token_id": "78259788683832677009477634146321056962454759373291562442713184500826626937599",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614817",
+        "question": "Will No Other Choice win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "No Other Choice",
+        "yes_token_id": "50997129476173757591594684624380612077735869861884479090913202755906018813346",
+        "no_token_id": "106158098695946058213144849488316379022300399199403632310635409455412099158227",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614819",
+        "question": "Will Ballad of a Small Player win Best Cinematography at the 98th Academy Awards?",
+        "candidate": "Ballad of a Small Player",
+        "yes_token_id": "27043239194826448289452609077494998782287552055556349538234771912199301650131",
+        "no_token_id": "17541272453275454318631912365994412011080167364380589821522777266847471866782",
+        "endDate": "2026-03-15T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Oscars 2026: Best Film Editing Winner",
+    "type": "categorical",
+    "opinion_market_id": 211,
+    "polymarket_event_slug": "oscars-2026-best-film-editing-winner",
+    "polymarket_event_id": "50389",
+    "polymarket_event_title": "Oscars 2026: Best Film Editing Winner",
+    "polymarket_event_endDate": "2026-03-15T00:00:00Z",
+    "pairs": [
+      {
+        "candidate": "One Battle After Another",
+        "opinion": {
+          "market_id": 3169,
+          "yes_token_id": "60529362641759527115812734859521398535357069857906857220370754636316501570457",
+          "no_token_id": "15088846960589818076444646100176534748179727401443392109879173373463393946868"
+        },
+        "polymarket": {
+          "market_id": "614763",
+          "question": "Will One Battle After Another win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "One Battle After Another",
+          "yes_token_id": "22306682868303944173484873770984234420229562539372004895535746782527796204127",
+          "no_token_id": "80917452128508419774668207685445879448193314156448770016569227650794272624376",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Sinners",
+        "opinion": {
+          "market_id": 3171,
+          "yes_token_id": "91547029013374205728743956837572171332949746726626652884609894558155654335655",
+          "no_token_id": "7990063303919447377831312098189189955167427235533588751652030413502849465917"
+        },
+        "polymarket": {
+          "market_id": "614764",
+          "question": "Will Sinners win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "Sinners",
+          "yes_token_id": "89030206793563500904260609341730125141446058752638409438690179101657405162308",
+          "no_token_id": "61521239802767536714300619467113884174956897443064371625090064498238633706721",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Marty Supreme",
+        "opinion": {
+          "market_id": 3170,
+          "yes_token_id": "79672328990348350558874271225006724285767712717907282028348326895000256332901",
+          "no_token_id": "52389421483305412758647722944379241023950472127761670174611704313462764641884"
+        },
+        "polymarket": {
+          "market_id": "614769",
+          "question": "Will Marty Supreme win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "Marty Supreme",
+          "yes_token_id": "82755898656431609731920707091814847764496986282954147775816373704149085190568",
+          "no_token_id": "62266144638466231262593756842616002041620957446195226267751453351249668796053",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "F1: The Movie",
+        "opinion": {
+          "market_id": 3174,
+          "yes_token_id": "98806218536517606985079376611528023470492439727581698053717195048206087003100",
+          "no_token_id": "73415241981539668320609037271728826348499786448468502943085382734888078985522"
+        },
+        "polymarket": {
+          "market_id": "614766",
+          "question": "Will F1: The Movie win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "F1: The Movie",
+          "yes_token_id": "73675390949809438546624314796554544781957737234271668240987688121858717634500",
+          "no_token_id": "57134981315954841263367773118289039135123287718726431643172512358228036936920",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Bugonia",
+        "opinion": {
+          "market_id": 3176,
+          "yes_token_id": "93737158333633584804741179175023465352441197690905553214413001484481489134122",
+          "no_token_id": "85988682679267204712841454396509164212113338729363926239128003607862141670649"
+        },
+        "polymarket": {
+          "market_id": "614772",
+          "question": "Will Bugonia win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "Bugonia",
+          "yes_token_id": "63907912510049389326440041488809609225487135624401702672521686437285089859273",
+          "no_token_id": "108696430960937486258692239704624754645409288826036965807677812265444740852164",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Avatar: Fire and Ash",
+        "opinion": {
+          "market_id": 3172,
+          "yes_token_id": "87920410958478597179904430872022635023664468959445082765259218769308849218290",
+          "no_token_id": "83405721131669655567430322845508640191482682024914093353073288656625778283075"
+        },
+        "polymarket": {
+          "market_id": "614773",
+          "question": "Will Avatar: Fire and Ash win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "Avatar: Fire and Ash",
+          "yes_token_id": "18275261219578200849529893361335609553271708090667337321730239656201854587621",
+          "no_token_id": "88521898415060488652597811277294929273246798479189920389563143063549622182596",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Frankenstein",
+        "opinion": {
+          "market_id": 3175,
+          "yes_token_id": "98974630012970204640161050900080549261514125267743122029064255564853720625551",
+          "no_token_id": "11432606699181426039875929311917224585766200042555102904298533908513566441676"
+        },
+        "polymarket": {
+          "market_id": "614775",
+          "question": "Will Frankenstein win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "Frankenstein",
+          "yes_token_id": "67918745180963996485067876285552149888168895729695319694168694250591287614721",
+          "no_token_id": "52592420546447847912284033291536361679115684201468438379871238976606805204291",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "It Was Just an Accident",
+        "opinion": {
+          "market_id": 3173,
+          "yes_token_id": "108131535266504936730762092036434827182273369191275304357297184526117159918130",
+          "no_token_id": "70503173927451879643067332245027610997762908505342933764172443216004404839726"
+        },
+        "polymarket": {
+          "market_id": "614777",
+          "question": "Will It Was Just an Accident win Best Film Editing at the 98th Academy Awards?",
+          "candidate": "It Was Just an Accident",
+          "yes_token_id": "58534681023818875790407312566195066271156118631062059224473324537008844423513",
+          "no_token_id": "76514194087773128003147502720946314639735957496353420958591788074282420747915",
+          "endDate": "2026-03-15T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "614765",
+        "question": "Will A House of Dynamite win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "A House of Dynamite",
+        "yes_token_id": "21233394298781027707311101678764459965989941337891748455023124003691129434076",
+        "no_token_id": "29621403325843116203923081293223919238551861129844570179873962034475670115917",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614767",
+        "question": "Will No Other Choice win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "No Other Choice",
+        "yes_token_id": "5772852510626823212896886239668335810671772730807618126035344120810638877112",
+        "no_token_id": "52938786647350860159491146366996603396886162284833588490686851185811544796455",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614768",
+        "question": "Will Hamnet win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "Hamnet",
+        "yes_token_id": "25978021480582743936166083855559615311386397919725116166082703893505427853074",
+        "no_token_id": "47884350167641310698020341129817442999699337751561766408926425712174288059217",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614770",
+        "question": "Will Sentimental Value win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "Sentimental Value",
+        "yes_token_id": "58847075608590375770102408609219218996100877815457008890155403462273097068850",
+        "no_token_id": "57853292158092272029303498751321169000449701297380990136284670614501790040390",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614771",
+        "question": "Will Wicked: For Good win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "Wicked: For Good",
+        "yes_token_id": "84367082833933236328534123167347348975420439362177842446358545965289468374613",
+        "no_token_id": "104491516388758276555591461500526278752535181520161596568179309047301953776225",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614774",
+        "question": "Will The Smashing Machine win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "The Smashing Machine",
+        "yes_token_id": "69908527183841389171414439936204560946693347384418952974838394073510562465585",
+        "no_token_id": "38721313464467058543784167364219798696600658320807359843111723713849356626115",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614776",
+        "question": "Will Springsteen: Deliver Me from Nowhere win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "Springsteen: Deliver Me from Nowhere",
+        "yes_token_id": "26515727338411689013676135034606087999991795379617485925617113404175785429449",
+        "no_token_id": "83114300032899312907293483691087520232133609605135791795356541647469905146894",
+        "endDate": "2026-03-15T00:00:00Z"
+      },
+      {
+        "market_id": "614778",
+        "question": "Will any other film win Best Film Editing at the 98th Academy Awards?",
+        "candidate": "Other",
+        "yes_token_id": "91130703439444730953296367224733291543795451358568744176906045750912693773952",
+        "no_token_id": "12192024327950174214976035718647247850763952397107553292762539836312966968608",
+        "endDate": "2026-03-15T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "What will be the top US Netflix show this week?",
+    "type": "categorical",
+    "opinion_market_id": 214,
+    "polymarket_event_slug": "what-will-be-the-top-us-netflix-show-this-week-648",
+    "polymarket_event_id": "119023",
+    "polymarket_event_title": "What will be the top US Netflix show this week?",
+    "polymarket_event_endDate": "2025-12-30T00:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Stranger Things: Season 5",
+        "opinion": {
+          "market_id": 3200,
+          "yes_token_id": "79679610457250608167228088866198667311836516218071962600160633730197297484248",
+          "no_token_id": "37384360263480392764573192867122697716636534969570401985404309010435790266202"
+        },
+        "polymarket": {
+          "market_id": "1002193",
+          "question": "Will \"Stranger Things: Season 5\" be the top US Netflix show this week? (December 30, 2025)",
+          "candidate": "Stranger Things: Season 5",
+          "yes_token_id": "95672617002441085665902024145366135397474758826718421854138608651181330640566",
+          "no_token_id": "21885258640557248182817530453237865173038120256065794412102748643975535935812",
+          "endDate": "2025-12-30T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Christmas Gameday: Lions vs. Vikings",
+        "opinion": {
+          "market_id": 3201,
+          "yes_token_id": "11219556098677973668574401989175429747336216013953227777676161165230983845905",
+          "no_token_id": "110024104830806207449041134066579670982887093665126913470323308489454149758986"
+        },
+        "polymarket": {
+          "market_id": "1002195",
+          "question": "Will \"Christmas Gameday: Lions vs. Vikings\" be the top US Netflix show this week? (December 30, 2025)",
+          "candidate": "Christmas Gameday: Lions vs. Vikings",
+          "yes_token_id": "96044003647631616749929186552252350734451157321201685918273248255136234737904",
+          "no_token_id": "75981987325384985339700946203751620261829262035726031978524841224015689111377",
+          "endDate": "2025-12-30T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Christmas Gameday: Cowboys vs. Commanders",
+        "opinion": {
+          "market_id": 3202,
+          "yes_token_id": "11852217956717508415263238305225196961006011019813726843942217862757578201288",
+          "no_token_id": "36810249689821772124436033999855723998371409373895999151232360898107666983244"
+        },
+        "polymarket": {
+          "market_id": "1002194",
+          "question": "Will \"Christmas Gameday: Cowboys vs. Commanders\" be the top US Netflix show this week? (December 30, 2025)",
+          "candidate": "Christmas Gameday: Cowboys vs. Commanders",
+          "yes_token_id": "27685969728021640011459826701617434487262921445884272658109233901489474850546",
+          "no_token_id": "40307296994861529845869744905417071108856969892578911529970295742305582664872",
+          "endDate": "2025-12-30T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Emily in Paris: Season 5",
+        "opinion": {
+          "market_id": 3203,
+          "yes_token_id": "15451870464513150215005125601150224618845481131134279716101473381001052728675",
+          "no_token_id": "14634243279884237979575878934392352522481998215157819989858975347314770359499"
+        },
+        "polymarket": {
+          "market_id": "1002191",
+          "question": "Will \"Emily in Paris: Season 5\" be the top US Netflix show this week? (December 30, 2025)",
+          "candidate": "Emily in Paris: Season 5",
+          "yes_token_id": "33181315267719272043182914450794186423338329409163793501339625528541363279646",
+          "no_token_id": "22756595210475180716564962106874736068042345108666317844095142517551014347054",
+          "endDate": "2025-12-30T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Man Vs. Baby",
+        "opinion": {
+          "market_id": 3204,
+          "yes_token_id": "97092999300801332302954538982903782764090998645781090468600922985339760772612",
+          "no_token_id": "54309195859540967855710883677019879367797832057067717103234926467710213028075"
+        },
+        "polymarket": {
+          "market_id": "1002192",
+          "question": "Will \"Man Vs. Baby\" be the top US Netflix show this week? (December 30, 2025)",
+          "candidate": "Man Vs. Baby",
+          "yes_token_id": "9711096949848511585974613239201284486939383005420813308984955226346333708272",
+          "no_token_id": "58110801963926795051248823022082784452010726028248262109592493773310485527620",
+          "endDate": "2025-12-30T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": [
+      {
+        "market_id": "1002198",
+        "question": "Will \"Show C\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show C",
+        "yes_token_id": "90629302091491714044852288637378032088265970775958119326811577489999917411219",
+        "no_token_id": "29203506765908538813842345753241979296366233582262101651164984819029610547014",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002206",
+        "question": "Will \"Show K\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show K",
+        "yes_token_id": "110673132635089566460703560857700003925219027143171627271336348882235194462292",
+        "no_token_id": "52225012110506258105047119482882365422701201607314949902762760354940369554438",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002210",
+        "question": "Will \"Show O\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show O",
+        "yes_token_id": "44962545701311076132334744067849635118893151425548166223619185798303877019319",
+        "no_token_id": "32241648931158232702456881031494315730901317198970017979473641568815929288551",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002197",
+        "question": "Will \"Show B\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show B",
+        "yes_token_id": "84145950005648127490395007534787348341693561501804585413726917477970178181482",
+        "no_token_id": "81105683922589012065132088474418896093662949421905401692330884996006900587669",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002200",
+        "question": "Will \"Show E\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show E",
+        "yes_token_id": "27012615865197120522932187101111574110651610083842297350535708990336945743006",
+        "no_token_id": "27497350310185918349704003155864145111212356362782835518320298457274889581975",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002202",
+        "question": "Will \"Show G\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show G",
+        "yes_token_id": "74771954488147941298165812840088105731094582714160341811374244534031734073598",
+        "no_token_id": "81213045650041069824511183131966696707011514591119404355508229016843948198286",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002203",
+        "question": "Will \"Show H\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show H",
+        "yes_token_id": "69997554150668444672731456941359286693634936891755577563250065687256428507458",
+        "no_token_id": "29368339064427770099867823601234499852133509800142997598156549007273675998456",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002204",
+        "question": "Will \"Show I\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show I",
+        "yes_token_id": "70215897707591025346397528342826520949644140970717039491656805804831162922662",
+        "no_token_id": "64517540909842217754371956844544506690635727910703224403518439761695604275289",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002205",
+        "question": "Will \"Show J\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show J",
+        "yes_token_id": "39219872992483365482622492859277360220190670007349687144238084533372038716287",
+        "no_token_id": "40404527951044032778282486197243487591088230616134191613746113321928221255240",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002207",
+        "question": "Will \"Show L\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show L",
+        "yes_token_id": "13750142572867072438895195739117555407716678617436085533438626119484730346128",
+        "no_token_id": "36234546814229937777943656918385999294901866398259446614408771215579274507277",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002209",
+        "question": "Will \"Show N\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show N",
+        "yes_token_id": "69015583277090645077562776815320238135569546460711678968140707187066053463421",
+        "no_token_id": "99239051506168980286113174851953718279139701766830342038239328296011513117710",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002201",
+        "question": "Will \"Show F\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show F",
+        "yes_token_id": "19756297355759396756937892419986411637768285720861828990479809953209759697609",
+        "no_token_id": "35572153785127444373675959422913581329624656993296110567912635379569705869853",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002208",
+        "question": "Will \"Show M\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show M",
+        "yes_token_id": "36686910265906742284937251972016542022965512779321406346406764806380100356729",
+        "no_token_id": "58198056664082137078326584334627463946450824565424104697214949467063330762681",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002196",
+        "question": "Will \"Dave Chappelle: The Unstoppable\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Dave Chappelle: The Unstoppable",
+        "yes_token_id": "101015325135319495385760833077010847100392259459702622177286912422073249157975",
+        "no_token_id": "20801653205642610948140488769765969637196144596508169871679604011665705319201",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002199",
+        "question": "Will \"Show D\" be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Show D",
+        "yes_token_id": "53234277891378654925706823369895761312223244326401181545486916945960668831407",
+        "no_token_id": "21111962654727332052882858487616171851631557928152498606688363954700830320374",
+        "endDate": "2025-12-30T00:00:00Z"
+      },
+      {
+        "market_id": "1002211",
+        "question": "Will another show be the top US Netflix show this week? (December 30, 2025)",
+        "candidate": "Other",
+        "yes_token_id": "27737802271175720783835631408606541227331588727611639148591292927678271163219",
+        "no_token_id": "81464139278968593418116851917248330319347217580901951052346524877241218982830",
+        "endDate": "2025-12-30T00:00:00Z"
+      }
+    ]
+  },
+  {
+    "schema_version": 6,
+    "name": "Who will die in Stranger Things: Season 5?",
+    "type": "categorical",
+    "opinion_market_id": 215,
+    "polymarket_event_slug": "who-will-die-in-stranger-things-season-5",
+    "polymarket_event_id": "96664",
+    "polymarket_event_title": "Who will die in Stranger Things: Season 5?",
+    "polymarket_event_endDate": "2025-12-31T00:00:00Z",
+    "pairs": [
+      {
+        "candidate": "Eleven",
+        "opinion": {
+          "market_id": 3214,
+          "yes_token_id": "61130855607992476581455166384385582826183098174360627261427304618889787587839",
+          "no_token_id": "1271812978388525418398482101941617830164192236883764148464982102026799450190"
+        },
+        "polymarket": {
+          "market_id": "812010",
+          "question": "Will Eleven die in \"Stranger Things: Season 5\"?",
+          "candidate": "Eleven",
+          "yes_token_id": "68403617023928319391393106546921684553483543294700440401405462140878184745736",
+          "no_token_id": "8010285051162883778750284192345707717637236188180482207065972792464743283426",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Steve Harrington",
+        "opinion": {
+          "market_id": 3215,
+          "yes_token_id": "111337641000841557954381437136042491687989578317982585086285496927398741159043",
+          "no_token_id": "7358051901294556123423050832257034197174278963271916114651831343656343420358"
+        },
+        "polymarket": {
+          "market_id": "825557",
+          "question": "Will Steve Harrington die in \"Stranger Things: Season 5\"?",
+          "candidate": "Steve Harrington",
+          "yes_token_id": "94421181301616022753004508925189309895787075518540210497955803461868984908293",
+          "no_token_id": "106378052095974789682705658891923537172834245381182061270307209570817966104823",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Will Byers",
+        "opinion": {
+          "market_id": 3216,
+          "yes_token_id": "16772114927180199772989823193427701873057950997202570072560855884851700109115",
+          "no_token_id": "94061270749120247710081520140308323794394201415609394114702427228484585050093"
+        },
+        "polymarket": {
+          "market_id": "812012",
+          "question": "Will Will Byers die in \"Stranger Things: Season 5\"?",
+          "candidate": "Will Byers",
+          "yes_token_id": "25229122580133926696013651995839452419729734079077775373093861247317279747020",
+          "no_token_id": "88618503739123288371874876822133017931029539866200640979141957309878456759818",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Jim Hopper",
+        "opinion": {
+          "market_id": 3217,
+          "yes_token_id": "81758804508274998811047027543783223382083279362295213690065512823026272781065",
+          "no_token_id": "94060488491030286462481006317777550926324053077168522217435119845425741074953"
+        },
+        "polymarket": {
+          "market_id": "812016",
+          "question": "Will Jim Hopper die in \"Stranger Things: Season 5\"?",
+          "candidate": "Jim Hopper",
+          "yes_token_id": "111229035889743939657277502182872230567058139698667295270243090851147736437811",
+          "no_token_id": "82153955756614680444880977180038252483695932296296117471022259552600701163172",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Max Mayfield",
+        "opinion": {
+          "market_id": 3220,
+          "yes_token_id": "76064646127891214113444908774981518100510042248130154478089256115363216146043",
+          "no_token_id": "42632803003992980523206099105562228068585052879317973327304057488172459475784"
+        },
+        "polymarket": {
+          "market_id": "812015",
+          "question": "Will Max Mayfield die in \"Stranger Things: Season 5\"?",
+          "candidate": "Max Mayfield",
+          "yes_token_id": "71435162004584602941190875575420322258104157502520987791305951198920535156031",
+          "no_token_id": "78261375950650114661810372243357217760907203215361022604728957339512307507864",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Derek Turnbow",
+        "opinion": {
+          "market_id": 3219,
+          "yes_token_id": "4127727133006557799055117277176239789428253979238107958966460519009291764888",
+          "no_token_id": "31090234108635853286434771242010272144480925171663434562929429537595649947980"
+        },
+        "polymarket": {
+          "market_id": "897812",
+          "question": "Will Derek Turnbow die in \"Stranger Things: Season 5\"?",
+          "candidate": "Derek Turnbow",
+          "yes_token_id": "54752521447328368292221002605020935314331344793578529438073045931246938845593",
+          "no_token_id": "55599640523897452226678913172872736512862358893405299791184755901773406401965",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Jonathan Byers",
+        "opinion": {
+          "market_id": 3232,
+          "yes_token_id": "92489084644553214293973917768914119075278999663504182920293778437543669731707",
+          "no_token_id": "54068081604614788265889677141741188966951323304824780955397612318643422921536"
+        },
+        "polymarket": {
+          "market_id": "812018",
+          "question": "Will Jonathan Byers die in \"Stranger Things: Season 5\"?",
+          "candidate": "Jonathan Byers",
+          "yes_token_id": "15879886175892516874670425747823198180974877945552809656367906031609101749912",
+          "no_token_id": "21126453402766779298317989002421286583259267379009451628042660091097424890785",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Joyce Byers",
+        "opinion": {
+          "market_id": 3233,
+          "yes_token_id": "68171906466077927458333195549506581729836241058270772719161375413719518431774",
+          "no_token_id": "41845465315582558846686157765554000793904030184636616781305756107698299515620"
+        },
+        "polymarket": {
+          "market_id": "812020",
+          "question": "Will Joyce Byers die in \"Stranger Things: Season 5\"?",
+          "candidate": "Joyce Byers",
+          "yes_token_id": "114858681207251470231125485752092229795699366180000171098561580576734686125978",
+          "no_token_id": "90505203114070527845178658677113964689381481495564429307261650846572896528962",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Robin Buckley",
+        "opinion": {
+          "market_id": 3218,
+          "yes_token_id": "31569167008653344034569977706555304574999432468515061896979471440227186567430",
+          "no_token_id": "93796910819872222248927692518327995714727036651560251822063894179640800276753"
+        },
+        "polymarket": {
+          "market_id": "897811",
+          "question": "Will Robin Buckley die in \"Stranger Things: Season 5\"?",
+          "candidate": "Robin Buckley",
+          "yes_token_id": "59600615179993444417191375726684023404819060032993701851138651774172986746096",
+          "no_token_id": "94141712011512014057713144984220211539292080114639704406686915222320943868772",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Holly Wheeler",
+        "opinion": {
+          "market_id": 3237,
+          "yes_token_id": "108205493168574516305518766090784809971204283810029731274326328500437727661677",
+          "no_token_id": "34133289587680257431142822638240040600438644308572003967389841115634120429344"
+        },
+        "polymarket": {
+          "market_id": "812019",
+          "question": "Will Holly Wheeler die in \"Stranger Things: Season 5\"?",
+          "candidate": "Holly Wheeler",
+          "yes_token_id": "15297298542742892839074733466989679967611944649241539394155610947374633952440",
+          "no_token_id": "88627114672884622564769167486358484109649112025163944442389614084019495251169",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Mike Wheeler",
+        "opinion": {
+          "market_id": 3238,
+          "yes_token_id": "79977429303282744857049522305949548402242217455650776911018041862791009771825",
+          "no_token_id": "19211205653825354216027461065476686663595456781031668730708267310772295862184"
+        },
+        "polymarket": {
+          "market_id": "812011",
+          "question": "Will Mike Wheeler die in \"Stranger Things: Season 5\"?",
+          "candidate": "Mike Wheeler",
+          "yes_token_id": "50229529616777085027502492682800195748509080624860515924115435116786910229377",
+          "no_token_id": "58178736620938494820829510670482434617563656663609484401552518813741788942092",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Dustin Henderson",
+        "opinion": {
+          "market_id": 3235,
+          "yes_token_id": "94297022641662990420716444631545747155258131415324440062158493244988626192627",
+          "no_token_id": "76159483578213517286248196456431796618674678579800669108520410890873273551406"
+        },
+        "polymarket": {
+          "market_id": "812014",
+          "question": "Will Dustin Henderson die in \"Stranger Things: Season 5\"?",
+          "candidate": "Dustin Henderson",
+          "yes_token_id": "9108405501889990401894675017063984918352833803397543273748107036119908889285",
+          "no_token_id": "51494221528073682961148676109819661378816327008364539542393920165101307858678",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Lucas Sinclair",
+        "opinion": {
+          "market_id": 3236,
+          "yes_token_id": "101875115471664268974396902858255955517982454545464377518861739288176073542913",
+          "no_token_id": "55376331107147049791737480127488816000248291795686406347056851400286704976909"
+        },
+        "polymarket": {
+          "market_id": "812013",
+          "question": "Will Lucas Sinclair die in \"Stranger Things: Season 5\"?",
+          "candidate": "Lucas Sinclair",
+          "yes_token_id": "72943275147529510016305256853532824609963641526541761971043930766638943767770",
+          "no_token_id": "7429809813671662155109999393646307111148487681631170374768291675625125372435",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      },
+      {
+        "candidate": "Nancy Wheeler",
+        "opinion": {
+          "market_id": 3234,
+          "yes_token_id": "82767741354982952109864184841336209508805341392025292435196443780137930835514",
+          "no_token_id": "45265546067522719274755166038000412311341233555969520623860997147751602853059"
+        },
+        "polymarket": {
+          "market_id": "812017",
+          "question": "Will Nancy Wheeler die in \"Stranger Things: Season 5\"?",
+          "candidate": "Nancy Wheeler",
+          "yes_token_id": "12999192396257494669938160849759963853009168153639581148293373031341661527128",
+          "no_token_id": "98999819426472847141314683268939346649763306351162188900933128601682003842443",
+          "endDate": "2025-12-31T00:00:00Z"
+        }
+      }
+    ],
+    "unmatched_opinion": [],
+    "unmatched_polymarket": []
+  },
+  {
+    "schema_version": 6,
+    "name": "Will MetaMask launch a token in 2025?",
     "type": "binary",
     "opinion": {
-      "market_id": 1284,
-      "yes_token_id": "34945310986201373330941739162465320212276075379996023126053398517455249509434",
-      "no_token_id": "55295340702691295702210088144789754887844379024384255055495622628881154291497"
+      "market_id": 793,
+      "yes_token_id": "91437317327175527814750622154707356202175422223221307935573363719095052990316",
+      "no_token_id": "62831738408188364649034064883659916764427774121374893736771714141392021104326"
     },
     "polymarket": {
-      "slug": "tiktok-sale-announced-in-2025",
-      "question": "TikTok sale announced in 2025?",
+      "slug": "will-metamask-launch-a-token-in-2025",
+      "question": "Will MetaMask launch a token in 2025?",
       "outcomes": [
         "Yes",
         "No"
       ],
       "clob_token_ids": [
-        "4149251664517640299965130273628133325857680891787528454768893425877314791040",
-        "15850558865033180331234000255512003885676334852017735365596545393783844147304"
+        "101163575689611177694586697172798294092987709960375574777760542313937687808591",
+        "102949690272049881918816161009598998660276278148863115139226223419430092123884"
       ],
-      "endDate": "2025-12-31T12:00:00Z"
+      "endDate": "2026-01-01T05:00:00Z"
+    }
+  },
+  {
+    "schema_version": 6,
+    "name": "Will there be another US government shutdown by January 31?",
+    "type": "binary",
+    "opinion": {
+      "market_id": 3114,
+      "yes_token_id": "115433849389047601718520396448917921051730356162768850507050759717302067306469",
+      "no_token_id": "36621200515936823298720686168677973021786473106358905797001537320768414966310"
+    },
+    "polymarket": {
+      "slug": "will-there-be-another-us-government-shutdown-by-january-31",
+      "question": "Will there be another US government shutdown by January 31?",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "clob_token_ids": [
+        "52607315900507156846622820770453728082833251091510131025984187712529448877245",
+        "108988271800978168213949343685406694292284061166193819357568013088568150075789"
+      ],
+      "endDate": "2026-01-31T00:00:00Z"
+    }
+  },
+  {
+    "schema_version": 6,
+    "name": "Will Alex Honnold free solo Taipei 101?",
+    "type": "binary",
+    "opinion": {
+      "market_id": 3073,
+      "yes_token_id": "35150177014834253962170056574915365789544484135328684935196002749660960792327",
+      "no_token_id": "80052040900674862234408691872334391929360465153428477030224222653272263423907"
+    },
+    "polymarket": {
+      "slug": "will-alex-honnold-free-solo-taipei-101",
+      "question": "Will Alex Honnold free solo Taipei 101?",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "clob_token_ids": [
+        "37874941525788957002489270459582211043734519506052584901600077312328419413715",
+        "110181156192693711846310872068146183338589103136220803391073384883714916360200"
+      ],
+      "endDate": "2026-01-23T00:00:00Z"
+    }
+  },
+  {
+    "schema_version": 6,
+    "name": "Israel strikes Iran by March 31, 2026?",
+    "type": "binary",
+    "opinion": {
+      "market_id": 3039,
+      "yes_token_id": "49535181559182780686886024535845995911691753820290126235145703538207021398285",
+      "no_token_id": "83239285558466842914676532371338738607039430425523034422154132930560845114139"
+    },
+    "polymarket": {
+      "slug": "israel-strikes-iran-by-march-31-2026",
+      "question": "Israel strikes Iran by March 31, 2026?",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "clob_token_ids": [
+        "100287514705853562207024142369991262845749687247667172227408277318016508667438",
+        "55201180171382344648128505031675400629485078801250545752063029078975592767599"
+      ],
+      "endDate": "2026-03-31T00:00:00Z"
+    }
+  },
+  {
+    "schema_version": 6,
+    "name": "US strike on Syria by December 31?",
+    "type": "binary",
+    "opinion": {
+      "market_id": 3057,
+      "yes_token_id": "11329323862880074665481267124998129910792297852808666836417888369651329703441",
+      "no_token_id": "56378735916551866965816443944478910859803088186963773519412352216044788045774"
+    },
+    "polymarket": {
+      "slug": "us-strike-on-syria-by-529",
+      "question": "US strike on Syria by December 31?",
+      "outcomes": [
+        "Yes",
+        "No"
+      ],
+      "clob_token_ids": [
+        "72871691118179913423528661781203594938988317539383423860489290473487356702020",
+        "34953747759820074767944144207463633812731260508015975722532997237328981546335"
+      ],
+      "endDate": "2025-12-31T00:00:00Z"
     }
   },
   {
