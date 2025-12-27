@@ -67,7 +67,7 @@ HTTP_TIMEOUT = (6, 20)
 
 # ====== 过滤策略默认值（你要改规则就改这几个）======
 MIN_DEPLOY_USD_DEFAULT = 20.0  # < $10 不提醒
-MAX_DAYS_TO_EXPIRY_DEFAULT = 60        # 2) 距 endDate > 60 天不提醒
+MAX_DAYS_TO_EXPIRY_DEFAULT = 90        # 2) 距 endDate > 60 天不提醒
 EVENT_META_TTL_SECONDS = 24 * 3600     # 事件元数据（endDate）每天刷新一次
 
 # ===================== 小工具 =====================
@@ -695,12 +695,12 @@ def main():
 
     # 这些你完全可以只改 default，不传命令行参数
     ap.add_argument("--interval", type=float, default=1.0, help="轮询间隔秒")
-    ap.add_argument("--delta-cents", type=float, default=1.8, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
+    ap.add_argument("--delta-cents", type=float, default=1.4, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
     ap.add_argument("--cooldown", type=int, default=180, help="同一条机会最短提醒间隔(秒)")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出")
 
     ap.add_argument("--short-days", type=int, default=30, help="剩余天数 < short-days 走短期阈值")
-    ap.add_argument("--delta-short", type=float, default=1.80, help="剩余天数 < short-days 的提醒阈值(%%)")
+    ap.add_argument("--delta-short", type=float, default=1.40, help="剩余天数 < short-days 的提醒阈值(%%)")
     ap.add_argument("--delta-mid", type=float, default=2.50, help="short-days 到 max-days-to-expiry 的提醒阈值(%%)")
 
 
