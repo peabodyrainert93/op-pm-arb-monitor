@@ -695,7 +695,7 @@ def main():
 
     # 这些你完全可以只改 default，不传命令行参数
     ap.add_argument("--interval", type=float, default=1.0, help="轮询间隔秒")
-    ap.add_argument("--delta-cents", type=float, default=1.4, help="阈值点差(美分)。例如 1 表示 sum < 0.99 才提醒")
+    ap.add_argument("--delta-cents", type=float, default=1.4, help="fallback 阈值(%%)：仅当 endDate/days 缺失时使用")
     ap.add_argument("--cooldown", type=int, default=180, help="同一条机会最短提醒间隔(秒)")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出")
 
@@ -739,7 +739,14 @@ def main():
     
     # ====== 新增：给单条 leg 算 threshold======
     def threshold_for_leg(leg, args) -> float:
-        days = leg.get("_days_to_expiry")
+        end_dt = leg.get("_pm_end_dt")
+        if isinstance(end_dt, datetime):
+            if end_dt.tzinfo is None:
+                end_dt = end_dt.replace(tzinfo=timezone.utc)
+            days = (end_dt - datetime.now(timezone.utc)).total_seconds() / 86400.0
+        else:
+            days = leg.get("_days_to_expiry")
+
 
         # days 取不到时（极少数 endDate 缺失且 gamma 也拿不到），用原来的 delta-cents 兜底
         if not isinstance(days, (int, float)):
@@ -804,14 +811,49 @@ def main():
     get_session("tg")
     # ===== Warmup end =====
 
+    # ====== Active legs 缓存：启动时计算一次；每天 UTC 00:00 刷新一次 ======
+    def _next_utc_midnight_ts() -> float:
+        now = datetime.now(timezone.utc)
+        nxt = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+        return nxt.timestamp()
+
+    def _refresh_legs_and_active() -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]], float, float]:
+        # ✅ 每天 00:00 顺便重读 JSON（这样你更新 market_token_pairs.json 后会自动生效）
+        nonlocal legs
+        t0 = time.perf_counter()
+
+        with open(args.json, "r", encoding="utf-8") as f:
+            market_json2 = json.load(f)
+        legs = build_legs(market_json2)
+
+        active = [leg for leg in legs if leg_is_within_days(leg, args.max_days_to_expiry, gamma_limiter)]
+        t = time.perf_counter() - t0
+        next_ts = _next_utc_midnight_ts()
+        return legs, active, t, next_ts
+
+    legs, active_legs, t_filter_init, next_refresh_ts = _refresh_legs_and_active()
+    print(
+        f"[FILTER] init active_legs={len(active_legs)}/{len(legs)} | took={t_filter_init:.3f}s | "
+        f"next_refresh_utc={datetime.fromtimestamp(next_refresh_ts, timezone.utc).strftime('%Y-%m-%d %H:%M:%SZ')}"
+    )
+
     try:
         while True:
             t0 = time.perf_counter()
 
-            # ====== 2) 结束时间过滤（优先用 JSON 里的 pm_endDate；>max_days 不监控）======
+            # ====== 2) 结束时间过滤：仅在 UTC 00:00 刷新一次，其他轮次复用缓存 ======
             t_filter0 = time.perf_counter()
-            active_legs = [leg for leg in legs if leg_is_within_days(leg, args.max_days_to_expiry, gamma_limiter)]
-            t_filter = time.perf_counter() - t_filter0
+            now_ts = time.time()
+
+            if now_ts >= next_refresh_ts:
+                legs, active_legs, t_filter, next_refresh_ts = _refresh_legs_and_active()
+                print(
+                    f"[FILTER] refreshed active_legs={len(active_legs)}/{len(legs)} | "
+                    f"next_refresh_utc={datetime.fromtimestamp(next_refresh_ts, timezone.utc).strftime('%Y-%m-%d %H:%M:%SZ')}"
+                )
+            else:
+                t_filter = 0.0
+
 
             if not active_legs:
                 # 全被过滤了，就等下一轮
