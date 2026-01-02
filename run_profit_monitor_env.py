@@ -156,8 +156,15 @@ def make_polymarket_event_url(event_slug: Optional[str]) -> str:
 
 
 def load_opinion_keys() -> List[str]:
-    raw = os.getenv("OPINION_API_KEYS", "").strip()
-    one = os.getenv("OPINION_API_KEY", "").strip()
+    # 1) 获利模块专用 key（优先）
+    raw = os.getenv("PROFIT_OPINION_API_KEYS", "").strip()
+    one = os.getenv("PROFIT_OPINION_API_KEY", "").strip()
+
+    # 2) 没配专用 key，就回退到通用 key（兼容老配置）
+    if not raw and not one:
+        raw = os.getenv("OPINION_API_KEYS", "").strip()
+        one = os.getenv("OPINION_API_KEY", "").strip()
+
     keys: List[str] = []
     if raw:
         keys = [k for k in re.split(r"[,\s]+", raw) if k]

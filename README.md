@@ -1,4 +1,4 @@
-# OP/PM 套利TG通知机器人（Opinion × Polymarket）
+# OP/PM 套利通知 TG 机器人（Opinion × Polymarket）
 
 用于监控 Opinion 与 Polymarket 同一事件的盘口价差，发现套利空间后通过 Telegram 发送提醒。
 

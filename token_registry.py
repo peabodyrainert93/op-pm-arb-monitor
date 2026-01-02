@@ -29,6 +29,14 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
     },
 
     {
+        "name": "ECB Rates Decision (DFR): February 2026",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=121&type=multi",
+        "polymarket_url": "https://polymarket.com/event/ecb-interest-rates-february-2026?tid=1767057014759",    
+    },
+
+
+    {
         "name": "What price will gold close at in 2025?",
         "type": "categorical",  # 多项
         "opinion_url": "https://app.opinion.trade/detail?topicId=62&type=multi",
@@ -391,6 +399,76 @@ URL_PAIRS_FOR_DEBUG: List[Dict[str, str]] = [
         "type": "categorical",  # 多项
         "opinion_url": "https://app.opinion.trade/detail?topicId=215&type=multi", 
         "polymarket_url": "https://polymarket.com/event/who-will-die-in-stranger-things-season-5?tid=1766810860025", 
+    },
+
+    {
+        "name": "Israel x Iran ceasefire broken by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=226&type=multi",
+        "polymarket_url": "https://polymarket.com/event/israel-x-iran-ceasefire-broken-by?tid=1767019602864",
+    },
+
+    {
+        "name": "Will Silver hit ... by end of January?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=227&type=multi",
+        "polymarket_url": "https://polymarket.com/event/si-hit-jan-2026?tid=1767019653328",
+    },
+
+    {
+        "name": "Bank of Japan Decision in March?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=230&type=multi",
+        "polymarket_url": "https://polymarket.com/event/bank-of-japan-decision-in-march?tid=1767019688327",
+    },
+
+    {
+        "name": "Largest Company end of January?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=236&type=multi",
+        "polymarket_url": "https://polymarket.com/event/largest-company-end-of-january?tid=1767112601918",
+    },
+
+    {
+        "name": "Which company has the best AI model end of January?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=237&type=multi",
+        "polymarket_url": "https://polymarket.com/event/which-company-has-the-best-ai-model-end-of-january?tid=1767112706840",
+    },
+
+    {
+        "name": "NATO x Russia military clash by...?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=238&type=multi",
+        "polymarket_url": "https://polymarket.com/event/nato-x-russia-military-clash-in-2025?tid=1767150265205",
+    },
+
+    {
+        "name": "Logan Paul 1st edition Charizard Sale Price?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=239&type=multi",
+        "polymarket_url": "https://polymarket.com/event/logan-paul-1st-edition-charizard-sale-price?tid=1767150294355",
+    },
+
+    {
+        "name": "NFL MVP 2026",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=240&type=multi",
+        "polymarket_url": "https://polymarket.com/event/nfl-mvp-355?tid=1767166639693",
+    },
+
+    {
+        "name": "What will Gold settle at in January?",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=241&type=multi",
+        "polymarket_url": "https://polymarket.com/event/gc-settle-jan-2026?tid=1767234452401",
+    },
+
+    {
+        "name": "Logan Paul’s Pikachu Illustrator Sale Price",
+        "type": "categorical",  # 多项
+        "opinion_url": "https://app.opinion.trade/detail?topicId=217&type=multi",
+        "polymarket_url": "https://polymarket.com/event/logan-pauls-psa-10-pokmon-illustrator-sale-price?tid=1767263023852",
     },
 
     {
