@@ -33,6 +33,8 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 from dotenv import load_dotenv
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import threading
 
 load_dotenv()
 
@@ -58,6 +60,25 @@ USER_AGENT = (
     "Chrome/120.0.0.0 Safari/537.36"
 )
 HTTP_TIMEOUT = (6, 25)
+
+class RateLimiter:
+    def __init__(self, rps: float):
+        self.interval = 1.0 / max(0.1, float(rps))
+        self._lock = threading.Lock()
+        self._next = 0.0
+
+    def wait(self):
+        now = time.time()
+        with self._lock:
+            t = self._next if self._next > now else now
+            self._next = t + self.interval
+        # 注意：sleep 放在锁外，避免阻塞其它线程抢锁
+        delay = t - now
+        if delay > 0:
+            time.sleep(delay)
+
+# 先给一个默认值，后面在 main() 里会用参数覆盖
+OP_RL = RateLimiter(10)
 
 
 # ===================== helpers =====================
@@ -300,9 +321,9 @@ def opinion_fetch_positions(wallet: str, api_key: str, min_shares: float) -> Dic
                 continue
             out[str(token_id)] = s
 
-        if not items:
-            break
         page += 1
+        if page > 200:
+            break
         continue
 
 
@@ -348,6 +369,7 @@ def polymarket_fetch_positions(user: str, min_shares: float) -> Dict[str, float]
 
 # ===================== orderbooks =====================
 def opinion_fetch_orderbook_bid(token_id: str, api_key: str) -> Tuple[Optional[float], Optional[float]]:
+    OP_RL.wait()  # <--- 新增这一行：全局限速
     headers = {"apikey": api_key, "Accept": "application/json", "User-Agent": USER_AGENT}
     obj = request_json("GET", OPINION_ORDERBOOK_ENDPOINT, headers=headers, params={"token_id": token_id}, timeout=HTTP_TIMEOUT)
     if isinstance(obj, dict):
@@ -413,6 +435,7 @@ def run_once(
     market_json_path: str,
     min_shares: float,
     min_bid_size: float,
+    op_workers: int,
     threshold: float,
     cooldown_sec: int,
     dry_run: bool,
@@ -454,6 +477,18 @@ def run_once(
 
     print(f"[INFO] matched pairs: {len(matched)}")
 
+    op_token_ids = sorted({m[3] for m in matched})  # m[3] 是 op_tid
+    op_books: Dict[str, Tuple[Optional[float], Optional[float]]] = {}
+    with ThreadPoolExecutor(max_workers=int(op_workers)) as ex:
+        fut_map = {ex.submit(opinion_fetch_orderbook_bid, tid, api_key): tid for tid in op_token_ids}
+        for fut in as_completed(fut_map):
+            tid = fut_map[fut]
+            try:
+                op_books[tid] = fut.result()
+            except Exception:
+                op_books[tid] = (None, None)
+
+
     pm_token_ids = sorted({m[2] for m in matched})
     pm_books = polymarket_fetch_books_batch(pm_token_ids)
 
@@ -463,7 +498,7 @@ def run_once(
     for (leg, direction, pm_tid, op_tid) in matched:
         pm_book = pm_books.get(pm_tid) or {"bids": [], "asks": []}
         pm_bb, pm_bbs = parse_best_bid(pm_book)
-        op_bb, op_bbs = opinion_fetch_orderbook_bid(op_tid, api_key)
+        op_bb, op_bbs = op_books.get(op_tid, (None, None))
 
         if pm_bb is None or op_bb is None:
             continue
@@ -504,13 +539,16 @@ def run_once(
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", default=MARKET_JSON_DEFAULT, help="market_token_pairs.json 路径")
-    ap.add_argument("--interval", type=int, default=120, help="扫描间隔秒数（默认 120=2分钟）")
+    ap.add_argument("--interval", type=int, default=30, help="扫描间隔秒数（默认 120=2分钟）")
     ap.add_argument("--min-shares", type=float, default=10.0, help="过滤持仓（sharesOwned/size）小于该值的仓位")
-    ap.add_argument("--min-bid-size", type=float, default=10.0, help="过滤 best bid 的挂单量（PM/OP 任一边 size 小于该值就不提醒）")
+    ap.add_argument("--min-bid-size", type=float, default=20.0, help="过滤 best bid 的挂单量（PM/OP 任一边 size 小于该值就不提醒）")
     ap.add_argument("--threshold", type=float, default=1.0, help="当 best bid 相加大于该值则提醒（默认 1.0）")
-    ap.add_argument("--cooldown", type=int, default=1800, help="同一条提醒最短重复间隔秒数（默认 1800=30分钟）")
+    ap.add_argument("--cooldown", type=int, default=180, help="同一条提醒最短重复间隔秒数（默认 1800=30分钟）")
     ap.add_argument("--once", action="store_true", help="只跑一轮就退出（测试用）")
     ap.add_argument("--dry-run", action="store_true", help="不发电报，只打印（测试用）")
+
+    ap.add_argument("--op-workers", type=int, default=12, help="Opinion orderbook 并发线程数（默认 8）")
+    ap.add_argument("--op-rps", type=float, default=12.0, help="Opinion orderbook 请求频率上限 rps（默认 10，建议 <= 12）")
 
     ap.add_argument("--wallet", default=os.getenv("WALLET_ADDRESS", "").strip(),
                     help="(兼容旧用法) 同时作为 OP/PM 钱包地址；优先级低于 --op-wallet/--pm-wallet")
@@ -520,6 +558,10 @@ def main():
                     help="Polymarket user 地址（默认读取 .env: PM_WALLET_ADDRESS）")
 
     args = ap.parse_args()
+
+    global OP_RL
+    OP_RL = RateLimiter(args.op_rps)
+
 
     if not os.path.exists(args.json):
         raise SystemExit(f"找不到 {args.json}")
@@ -542,6 +584,7 @@ def main():
                 market_json_path=args.json,
                 min_shares=float(args.min_shares),
                 min_bid_size=float(args.min_bid_size),
+                op_workers=int(args.op_workers),
                 threshold=float(args.threshold),
                 cooldown_sec=int(args.cooldown),
                 dry_run=bool(args.dry_run),
