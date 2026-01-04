@@ -157,8 +157,8 @@ def parse_best_bid(book_obj: Any) -> Tuple[Optional[float], Optional[float]]:
     if not isinstance(bids, list) or not bids:
         return None, None
 
-    bids_sorted = sorted(bids, key=lambda x: ffloat(x.get("price")) or -1e18, reverse=True)
-    top = bids_sorted[0]
+    top = max(bids, key=lambda x: ffloat(x.get("price")) or -1e18)
+
     return ffloat(top.get("price")), ffloat(top.get("size"))
 
 
@@ -202,18 +202,39 @@ def build_legs(market_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         mtype = item.get("type") or ("categorical" if item.get("pairs") else "binary")
 
         if item.get("pairs"):
-            parent_id = item.get("opinion_market_id") or item.get("opinion_parent_id") or item.get("topicId")
-            pm_event_slug = item.get("polymarket_event_slug") or item.get("pm_event_slug")
+            # ✅ categorical 的 parent_id 应该来自 item（父 topic/market）
+            parent_id = (
+                item.get("opinion_market_id")
+                or item.get("opinion_parent_id")
+                or item.get("topicId")
+            )
+
+            # ✅ categorical 的 pm_event_slug 也优先来自 item
+            pm_event_slug = (
+                item.get("polymarket_event_slug")
+                or item.get("pm_event_slug")
+            )
+
             for p in item.get("pairs") or []:
                 cand = p.get("candidate") or "UNKNOWN_CANDIDATE"
                 op = p.get("opinion") or {}
                 pm = p.get("polymarket") or {}
+
+                # ✅ 如果 item 没提供 slug，就从 pair 里兜底补一次
+                if not pm_event_slug:
+                    pm_event_slug = (
+                        pm.get("slug")
+                        or pm.get("eventSlug")
+                        or pm.get("event_slug")
+                    )
+
                 op_yes = str(op.get("yes_token_id") or "")
                 op_no = str(op.get("no_token_id") or "")
                 pm_yes = str(pm.get("yes_token_id") or "")
                 pm_no = str(pm.get("no_token_id") or "")
                 if not (op_yes and op_no and pm_yes and pm_no):
                     continue
+
                 pm_end = pm.get("endDate") or item.get("polymarket_event_endDate") or item.get("polymarket_event_end_date")
                 legs.append({
                     "type": "categorical",
@@ -228,6 +249,7 @@ def build_legs(market_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
                     "pm_endDate": pm_end,
                 })
             continue
+
 
         op = item.get("opinion") or {}
         pm = item.get("polymarket") or {}
@@ -257,8 +279,27 @@ def build_legs(market_json: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         if not (op_yes and op_no and pm_yes and pm_no):
             continue
 
-        parent_id = item.get("opinion_market_id") or item.get("opinion_parent_id") or item.get("topicId")
-        pm_event_slug = item.get("polymarket_event_slug") or item.get("pm_event_slug") or pm.get("eventSlug") or pm.get("event_slug")
+        parent_id = (
+            item.get("opinion_market_id")
+            or item.get("opinion_parent_id")
+            or item.get("topicId")
+            or op.get("market_id")      # ✅ 兼容 schema_version=6 binary
+            or op.get("marketId")       # （如果你别处用 marketId 命名）
+        )
+
+        pm_event_slug = (
+            item.get("polymarket_event_slug")
+            or item.get("pm_event_slug")
+            or pm.get("slug")           # ✅ 兼容 schema_version=6 binary
+            or pm.get("eventSlug")
+            or pm.get("event_slug")
+        )
+        
+        if not parent_id or not pm_event_slug:
+            print(f"[WARN] missing url fields (binary): name={name} parent_id={parent_id} pm_event_slug={pm_event_slug}")
+            continue
+
+
         pm_end = pm.get("endDate") or item.get("polymarket_event_endDate") or item.get("polymarket_event_end_date")
         legs.append({
             "type": "binary",
@@ -284,6 +325,7 @@ def opinion_fetch_positions(wallet: str, api_key: str, min_shares: float) -> Dic
     headers = {"apikey": api_key, "Accept": "application/json", "User-Agent": USER_AGENT}
 
     while True:
+        OP_RL.wait()  # ✅ positions 也用同一个全局限速器
         url = f"{OPINION_POSITIONS_ENDPOINT}/{wallet}"
         obj = request_json("GET", url, headers=headers, params={"page": page, "limit": limit}, timeout=HTTP_TIMEOUT)
 
@@ -324,8 +366,7 @@ def opinion_fetch_positions(wallet: str, api_key: str, min_shares: float) -> Dic
         page += 1
         if page > 200:
             break
-        continue
-
+       
 
     return out
 
@@ -490,6 +531,9 @@ def run_once(
 
 
     pm_token_ids = sorted({m[2] for m in matched})
+    with ThreadPoolExecutor(max_workers=2) as bg:
+        pm_future = bg.submit(polymarket_fetch_books_batch, pm_token_ids)
+
     pm_books = polymarket_fetch_books_batch(pm_token_ids)
 
     alerts = 0
@@ -548,7 +592,7 @@ def main():
     ap.add_argument("--dry-run", action="store_true", help="不发电报，只打印（测试用）")
 
     ap.add_argument("--op-workers", type=int, default=12, help="Opinion orderbook 并发线程数（默认 8）")
-    ap.add_argument("--op-rps", type=float, default=12.0, help="Opinion orderbook 请求频率上限 rps（默认 10，建议 <= 12）")
+    ap.add_argument("--op-rps", type=float, default=10.0, help="Opinion orderbook 请求频率上限 rps（默认 10，建议 <= 12）")
 
     ap.add_argument("--wallet", default=os.getenv("WALLET_ADDRESS", "").strip(),
                     help="(兼容旧用法) 同时作为 OP/PM 钱包地址；优先级低于 --op-wallet/--pm-wallet")
@@ -595,7 +639,7 @@ def main():
 
         if args.once:
             break
-        time.sleep(max(30, int(args.interval)))
+        time.sleep(max(1, int(args.interval)))
 
 
 if __name__ == "__main__":
